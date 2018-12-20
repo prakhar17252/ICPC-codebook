@@ -64,8 +64,7 @@ inline void addImplication(int u, int v){
 // Returns true if a solution exists.
 inline bool solve(){
   for(int i = 0; i < NUM; i++){
-    sort(adj[i].begin(), adj[i].end());
-    onlyunique(adj[i]);
+    sort(all(adj[i])); onlyunique(adj[i]);
   }
   for(int i = 0; i < NUM; i += 2){
     if((!mark[i]) && (!mark[i+1])){
