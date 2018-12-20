@@ -13,4 +13,7 @@ void dijkstra(int v, int n){
 			if(d[it.ff] > d[u] + it.ss) {
 				d[it.ff] = d[u] + it.ss;
 				pq.push({d[it.ff], it.ff});
-}	} } }
+			}	
+		} 
+	} 
+}
