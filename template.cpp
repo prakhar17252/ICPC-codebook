@@ -112,5 +112,4 @@ signed main() {
 	#ifndef ONLINE_JUDGE
 		cerr << "\ntime taken: " << t2-t1 << '\n';
 	#endif // ONLINE_JUDGE
-	return 0;
-}
+	return 0; }
