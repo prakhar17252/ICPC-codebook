@@ -3,7 +3,8 @@
 \setlength{\parindent}{0.0in}
 \usepackage{amsmath}
 \usepackage{multicol}
-\usepackage[landscape,a4paper,twoside=false,top=15mm,bottom=8mm,left=8mm,right=8mm]{geometry}
+\usepackage{fancyhdr}
+\usepackage[landscape,a4paper,twoside=false,top=15mm,bottom=9mm,left=8mm,right=8mm]{geometry}
 \pagestyle{myheadings}
 \markright{}
 \usepackage{listings}
@@ -19,7 +20,7 @@
     breaklines=true, 
     prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
     % frame=single,
-    \setlength{\columnseprule}{0.4pt}, 
+    \setlength{\columnseprule}{1pt}, 
     rulecolor=\color[rgb]{0.75,0.75,0.75},
     showtabs=false,
     showspaces=false,
@@ -29,12 +30,24 @@
     stringstyle=\color[rgb]{0.627,0.126,0.941},
 }
 
+\pagestyle{fancy}
+\fancyhead[L]{RuntimeTerror - IIIT-Delhi}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{}
+
+\fancypagestyle{plain}
+{
+\fancyhead[L]{RuntimeTerror - IIIT-Delhi}
+\fancyhead[R]{\thepage}
+\fancyfoot[C]{}
+}
+
 \begin{document}
 % Disable balancing of columns on last page, which is ugly
 \begin{multicols*}{2}
 % Want compact table of contents, but normal spacing between paragraphs later on
 \setlength{\parskip}{0.0in}
-\tableofcontents % To remove Contents
+% \tableofcontents % To remove Contents
 \setlength{\parskip}{0.0in}
 % New codebook
 % \section{Flow and matching}
@@ -72,7 +85,7 @@ there is no generalization to higher dimensions)
 
 \section{Math Algorithms}
 
-\subsection{Sieve of Eratosthenes} % Jimmy Mårdell (Yarin)
+\subsection{Yarin Sieve} % Jimmy Mårdell (Yarin)
 \lstinputlisting[language=c++]{yarin.cpp}
 
 \subsection{Modular arithmetic and linear Diophantine solver} % Stanford
@@ -191,7 +204,7 @@ solution is unique iff the rank of the matrix equals the number of variables.
 \lstinputlisting[language=c++]{template.cpp}
 
 \subsection{C ++ Build System} % Brian Bi
-\lstinputlisting[language=c++]{C++build_system}
+\lstinputlisting[language=c++]{C++build_system.cpp}
 
 % \subsection{Java BigInt} % Brian Bi
 % \lstinputlisting[language=Java]{BigIntJava.java}
