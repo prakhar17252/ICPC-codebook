@@ -158,4 +158,4 @@ for(int i = 0; i < len(p); i++)
 		if(i == l || j == k) continue;
 		if(SegmentsIntersect(p[i], p[j], p[k], p[l]))
 			return false;
-		} return true;}
+		} return true; }
