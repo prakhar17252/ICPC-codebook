@@ -1,13 +1,14 @@
 struct SCC {
 	int V, group_cnt;
 	vector<vector<int>> adj, radj;
-	vector<int> group_num, vis, stk;
+	vector<int> group_num, vis;
 	stack<int> stk;
 
-	// V = number of vertices
+	// V = number of vertices. 0 based indexing
 	SCC(int V): V(V), group_cnt(0), group_num(V),
 										vis(V), adj(V), radj(V) {}
-                    
+
+	// Call this to add an edge
 	void add_edge(int v1, int v2) {
 		adj[v1].pb(v2); radj[v2].pb(v1);
 	}
@@ -16,7 +17,7 @@ struct SCC {
 		vis[x] = true;
 		for (int v: adj[x]) {
 			if(!vis[v]) fill_forward(v);
-		} stk.pb(x);
+		} stk.push(x);
 	}
 
 	void fill_backward(int x) {
@@ -29,15 +30,15 @@ struct SCC {
 	// Returns no. of SCCs
 	// group_num contains component assignments
 	int get_scc() {
-		for (int i = 0; i < V; i++) {
+		for (int i = 0; i < V; i++) {	// 0 based
 			if (!vis[i]) fill_forward(i);
 		}
 		group_cnt = 0;
 		while (!stk.empty()) {
-			if (vis[stk.back()]) {
-				fill_backward(stk.back());
-				group_cnt++;
-			} stk.pop_back();
+			if (vis[stk.top()]) {
+				++group_cnt;
+				fill_backward(stk.top());
+			} stk.pop();
 		} return group_cnt;
 	}
 };
