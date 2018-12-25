@@ -1,14 +1,15 @@
-// This is a collection of useful code for solving problems that
-// involve modular linear equations.  Note that all of the
-// algorithms described here work on nonnegative integers.
+// This is a collection of useful code for solving
+// problems that involve modular linear equations.
+// Note that all of the algorithms described here
+// work on nonnegative integers.
 
 // computes lcm(a,b)
 int lcm(int a, int b) {
     return (a / gcd(a,b)) * b;
 }
 
-// returns d = gcd(a,b); finds x,y such that d = ax + by
-int extended_euclid(int a, int b, int &x, int &y) {  
+// returns gcd(a,b); finds x,y s.t. d = ax + by
+int extended_euclid(int a, int b, int &x, int &y) {
     int xx = y = 0;
     int yy = x = 1;
     while (b) {
@@ -49,7 +50,7 @@ pii CRT(int x, int a, int y, int b) {
 }
 
 // Chinese remainder theorem: find z such that
-// z % x[i] = a[i] for all i. Note that solution is
+// z % x[i] = a[i] for all i. Solution is
 // unique mod M = lcm_i (x[i]). Return (z,M). On
 // failure, M = -1. Note that we do not require 
 // the a[i]'s to be relatively prime.
@@ -61,13 +62,11 @@ pii CRT(const vll &x, const vll &a) {
 	} return ret;
 }
 
-
 // computes x and y such that ax + by = c; 
 // on failure, x = y = -1 and return false
 // int qa = b / g, qb = b / g;
 // X = x + k * qa, Y = y - k * qb are also 
 // solutions of equation where k is any integer
-
 bool linear_diophantine(int a, int b, int c, 
 											int &x, int &y, int &g) {
 	g = gcd(a,b);
