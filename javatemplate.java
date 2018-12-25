@@ -7,7 +7,7 @@ public class Main{
 
  	public static void main(String[] args) 
 														throws Exception{
- PrintWriter out = new PrintWriter(System.out);
+ 		PrintWriter out = new PrintWriter(System.out);
  		solve(out); out.close();
  	}
 
