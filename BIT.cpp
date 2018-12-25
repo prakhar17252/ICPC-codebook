@@ -7,6 +7,11 @@ struct BIT {
 		while(i <= n) {
 			bit[i] += val; i += (i & -i);
 	} }
+	// For Range sum Update
+	// add(bit1, a, val);
+	// add(bit1, b+1, -val);
+	// add(bit2, a, val*(a-1));
+	// add(bit2, b+1, -val*b);
 
   int get(int i) {			// sum of a[1] .... a[i]
 		int sum = 0;
@@ -14,6 +19,8 @@ struct BIT {
 			sum += bit[i]; i -= (i & -i);
 		} return sum;
   }
+	// For range sum query a[1] ... a[i]
+	// return get(bit1, i) * i - get(bit2, i);
 
 	// sum of a[l] .... a[r] (both inclusive)
   int get(int l, int r){ return get(r)-get(l-1); }
