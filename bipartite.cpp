@@ -1,4 +1,4 @@
-// Solve() returns maximum bipartite matching
+// Returns maximum bipartite matching
 // The match can be recovered using the vector L
 // Works with 0 based too. Fast in practice
 
@@ -24,7 +24,7 @@ struct BipartiteMatcher {
         L[node] = vec; R[vec] = node; return true;
 		} } return false; }
   
-  int Solve() {
+  int GetMaximumMatching() {
     int ok = true;
     while (ok--) {
       fill(all(Viz), 0);
