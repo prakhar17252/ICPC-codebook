@@ -1,4 +1,4 @@
-class BIT {
+struct BIT {
   vector<int> bit;        // 1 based elements
   int n, k;
   BIT(int n) : n(n), bit(n+1), k(ceil(log2(n))) {}
