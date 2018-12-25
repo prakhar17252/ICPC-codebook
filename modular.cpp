@@ -5,20 +5,20 @@
 
 // computes lcm(a,b)
 int lcm(int a, int b) {
-    return (a / gcd(a,b)) * b;
+  return (a / gcd(a,b)) * b;
 }
 
 // returns gcd(a,b); finds x,y s.t. d = ax + by
 int extended_euclid(int a, int b, int &x, int &y) {
-    int xx = y = 0;
-    int yy = x = 1;
-    while (b) {
-        int q = a/b;
-        int t = b; b = a%b; a = t;
-        t = xx; xx = x-q*xx; x = t;
-        t = yy; yy = y-q*yy; y = t;
-    }
-    return a;
+  int xx = y = 0;
+  int yy = x = 1;
+  while (b) {
+    int q = a/b;
+    int t = b; b = a%b; a = t;
+    t = xx; xx = x-q*xx; x = t;
+    t = yy; yy = y-q*yy; y = t;
+  }
+  return a;
 }
 
 // finds all solutions to ax = b (mod n)
@@ -44,9 +44,9 @@ int mod_inverse(int a, int n) {
 // unique modulo M = lcm(x,y).
 // Return (z,M). On failure, M = -1.
 pii CRT(int x, int a, int y, int b) {
-    int s, t, d = extended_euclid(x, y, s, t);
-    if (a%d != b%d) return mp(0, -1);
-    return mp(takemod(s*b*x+t*a*y,x*y)/d, x*y/d);
+  int s, t, d = extended_euclid(x, y, s, t);
+  if (a%d != b%d) return mp(0, -1);
+  return mp(takemod(s*b*x+t*a*y,x*y)/d, x*y/d);
 }
 
 // Chinese remainder theorem: find z such that
