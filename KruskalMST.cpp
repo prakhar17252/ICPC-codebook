@@ -1,6 +1,4 @@
-/*	Kruskal MST
-		graph stores the edges.
-		Kruskal(n) for MST
+/*	graph stores the edges. Kruskal(n) for MST
 		spanning_tree will store edges
 		mincost will store MST weight */
 
