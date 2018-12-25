@@ -37,8 +37,8 @@ struct SuffixArray {
                   P[lvl-1][i + skp] : -1000)}, i};
       sort(all(M));
       for (int i = 0; i < L; i++) 
-      P[lvl][M[i].ss] = ((i && M[i].ff == M[i-1].ff) 
-                            ? P[lvl][M[i-1].ss] : i);
+      P[lvl][M[i].ss] = ((i && M[i].ff==M[i-1].ff) 
+                          ? P[lvl][M[i-1].ss] : i);
     }    
   }
 
