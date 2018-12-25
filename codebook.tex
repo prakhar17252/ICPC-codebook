@@ -9,11 +9,36 @@
 \markright{}
 \usepackage{listings}
 \usepackage{color}
+
+\usepackage{titlesec}
+\titlespacing{\section}{0pt}{*1}{*1}
+
+\titleformat{\section}[block]
+  {\titlerule\addvspace{4pt}\normalfont\Large\bfseries}
+  {\thesection\enspace}
+  {0pt}
+  {}
+  []
+
+\titleformat{\subsection}[block]
+  {\titlerule\addvspace{4pt}\normalfont\large\bfseries}
+  {\thesubsection\enspace}
+  {0pt}
+  {}
+  [\vspace{4pt}\titlerule]
+  
+% \titleformat{\section}
+%   {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
+% \titleformat{\subsection}
+%   {\normalfont\large\bfseries}{\thesubsection}{1em}{}[{\titlerule[0.4pt]}]
+
+% \titlespacing{\subsection}{0pt}{*0}{*0}
+
 \lstset{
 	tabsize=2,
 	basicstyle=\fontsize{12}{12}\ttfamily,
     %upquote=true,
-    aboveskip={1\baselineskip},
+    aboveskip={0\baselineskip},
     columns=fixed,
     showstringspaces=false,
     extendedchars=true,
@@ -50,17 +75,17 @@
 % \tableofcontents % To remove Contents
 \setlength{\parskip}{0.0in}
 % New codebook
-% \section{Flow and matching}
+\section{Flow and matching}
 
-% \subsection{Max flow (Dini\'c)} % Stanford
-% \lstinputlisting[language=c++]{dinic.cpp}
+\subsection{Max flow (Dini\'c)} % Stanford
+\lstinputlisting[language=c++]{dinic.cpp}
 
 % \subsection{Min-cost max-flow (successive shortest paths)}
 % % Frank Chu and Igor Naverniouk (modified by Brian Bi)
 % \lstinputlisting[language=c++]{mcmf4.cpp}
 
-% \subsection{Max bipartite matching} % Stanford
-% \lstinputlisting[language=c++]{bipartite.cpp}
+\subsection{Max bipartite matching} % Stanford
+\lstinputlisting[language=c++]{bipartite.cpp}
 
 
 
@@ -74,7 +99,7 @@
 \subsection{Convex hull} % Brian Bi
 \lstinputlisting[language=c++]{monotone.cpp}
 
-\subsection{Minimum Enclosing Disk (Welzl's Algorithm)} 
+\subsection{Minimum Enclosing Disk (Welzl)} 
 \lstinputlisting[language=c++]{welzl.cpp}
 
 \subsection{Pick's Theorem (Text)} % Wesley May
@@ -113,8 +138,7 @@ solution is unique iff the rank of the matrix equals the number of variables.
 \subsection{Fast Fourier transform (FFT)} % Stanford
 \lstinputlisting[language=c++]{fft.cpp}
 
-\subsection{Fast factorization (Pollard rho) and primality testing
-(Rabin--Miller)} % Qiyu Zhu
+\subsection{Pollard rho and (Rabin-Miller)} % Qiyu Zhu
 \lstinputlisting[language=c++]{pollard-rho.cpp}
 
 \subsection{Euler's Totient} % Andre Hahn Pereira
@@ -124,9 +148,6 @@ solution is unique iff the rank of the matrix equals the number of variables.
 
 \subsection{Strongly connected components} % Stanford (modified by Brian Bi)
 \lstinputlisting[language=c++]{scc.cpp}
-
-\subsection{Max flow (Dini\'c)} % Stanford
-\lstinputlisting[language=c++]{dinic.cpp}
 
 \subsection{Bridges} % Andre Hahn Pereira
 \lstinputlisting[language=c++]{bridges.cpp}
@@ -214,6 +235,20 @@ solution is unique iff the rank of the matrix equals the number of variables.
 
 \subsection{Python Fast I/O} % Brian Bi
 \lstinputlisting[language=Python]{FastIOPython.py}
+
+% Bit Tricks {{{
+
+\subsection{Bit tricks}
+Clearing the lowest 1 bit: \verb$x & (x - 1)$, all trailing 1's: \verb$x & (x + 1)$ \\
+Setting the lowest 0 bit: \verb$x | (x + 1)$ \\
+Enumerating subsets of a bitmask $m$: \\
+\verb|x=0; do { ...; x=(x+1+~m)&m; } while (x!=0);| \\
+\verb$__builtin_ctz/__builtin_clz$ returns the number of trailing/leading zero bits. \\
+\verb$__builtin_popcount(unsigned x)$ counts 1-bits (slower than table lookups). \\
+For 64-bit unsigned integer type, use the suffix `\verb$ll$', i.e. \verb$__builtin_popcountll$.
+
+% }}}
+
 
 % Combinatorics {{{
 \section{Combinatorics}
@@ -612,7 +647,7 @@ $x$ is losing iff $G(x) = 0$.
 
 \subsection{Sums of games}
 
-\vspace{-4mm}
+% \vspace{-4mm}
 \begin{itemize}
   \item
     \emph{Player chooses a game and makes a move in it}
@@ -630,7 +665,7 @@ $x$ is losing iff $G(x) = 0$.
 \end{itemize}
 % http://www.topcoder.com/tc?module=Static&d1=tutorials&d2=algorithmGames
 
-\vspace{-3mm}
+% \vspace{-3mm}
 
 \subsection{Mis\`{e}re Nim}
 A position with pile sizes $a_1, a_2, \dots, a_n \ge 1$,
@@ -640,18 +675,6 @@ A position with $n$ piles of size $1$ is losing iff $n$ is \emph{odd}
 
 % }}}
 
-% Bit Tricks {{{
-
-\section{Bit tricks}
-Clearing the lowest 1 bit: \verb$x & (x - 1)$, all trailing 1's: \verb$x & (x + 1)$ \\
-Setting the lowest 0 bit: \verb$x | (x + 1)$ \\
-Enumerating subsets of a bitmask $m$: \\
-\verb|x=0; do { ...; x=(x+1+~m)&m; } while (x!=0);| \\
-\verb$__builtin_ctz/__builtin_clz$ returns the number of trailing/leading zero bits. \\
-\verb$__builtin_popcount(unsigned x)$ counts 1-bits (slower than table lookups). \\
-For 64-bit unsigned integer type, use the suffix `\verb$ll$', i.e. \verb$__builtin_popcountll$.
-
-% }}}
 
 % Math {{{
 \section{Math}
