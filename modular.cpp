@@ -24,7 +24,7 @@ vll modular_equation_solver(int a, int b, int n){
 	vll solutions; int x, y;
 	int d = extended_euclid(a, n, x, y);
 	if (!(b%d)) {
-		x = takemod (x*(b/d), n);
+		x = takemod(x*(b/d), n);
 		for (int i = 0; i < d; i++)
 			solutions.pb(takemod(x + i*(n/d), n));
 	} return solutions;
@@ -60,16 +60,27 @@ pii CRT(const vll &x, const vll &a) {
 	} return ret;
 }
 
+// Helper function of linear_diophantine
+int gcd(int a, int b, int &x, int &y) {
+	if (a == 0) {
+		x = 0; y = 1; return b; 
+	}
+	int x1, y1; int d = gcd(b % a, a, x1, y1);
+	x = y1 - (b / a) * x1; y = x1; 
+	return d;
+}
+
 // computes x and y such that ax + by = c; 
-// on failure, x = y = -1 and return false
+// on failure returns false. g is gcd(a, b)
 // int qa = b / g, qb = b / g;
 // X = x + k * qa, Y = y - k * qb are also 
 // solutions of equation where k is any integer
 bool linear_diophantine(int a, int b, int c, 
-											int &x, int &y, int &g) {
-	g = __gcd(a,b);
-	if (c%g) return false;
-	x = c/g * mod_inverse(a/g, b/g); y = (c-a*x)/b;
-	assert(c == a * x + b * y);
-	return true; 
+										int& x0, int& y0, int& g) {
+	g = gcd(abs(a), abs(b), x0, y0);
+	if(c % g != 0) return false;
+	x0 *= c / g; y0 *= c / g;
+	if(a < 0) x0 *= -1; if(b < 0) y0 *= -1;
+	assert(a * x0 + b * y0 == c);
+	return true;
 }
