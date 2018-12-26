@@ -45,6 +45,6 @@ CR b_minidisk(vector<PT>& P, int i, vector<PT> R){
 
 // Call this function.
 CR minidisk(vector<PT> P) {
-	random_shuffle(all(P));
+	shuffle(all(P), rng);
 	return b_minidisk(P, 0, vector<PT>());
 }
