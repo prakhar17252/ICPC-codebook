@@ -29,7 +29,7 @@ ld GaussJordan(VVT &a, VVT &b) {
         if(pj==-1 || fabs(a[j][k])>fabs(a[pj][pk]))
         { pj = j; pk = k; }
 
-    if(fabs(a[pj][pk]) < EPS) return 0; 
+    if(fabs(a[pj][pk]) < EPS) return 0; // singular
     ipiv[pk]++;
     swap(a[pj], a[pk]); swap(b[pj], b[pk]);
     
