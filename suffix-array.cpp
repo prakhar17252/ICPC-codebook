@@ -1,5 +1,5 @@
 // Suffix array construction in O(L log^2 L) time.
-//   Routine for computing the length of longest 
+// Routine for computing the length of longest 
 // common prefix of two suffixes in O(log L) time.
 // INPUT: string s
 // OUTPUT: array suffix[] such that 
@@ -9,9 +9,9 @@
 //         of the permutation suffix[],
 //         we get the actual suffix array.
 
-// bobocel is the 0'th suffix
-//  obocel is the 5'th suffix
-//   bocel is the 1'st suffix
+// bobocel is the 0'th suffix in sorted order
+//  obocel is the 5'th suffix in sorted order
+//   bocel is the 1'st suffix in sorted order
 // SuffixArray suffix("bobocel");
 // vector<int> v = suffix.GetSuffixArray();
 // Expected v: 0 5 1 6 2 3 4
