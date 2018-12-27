@@ -1,6 +1,6 @@
 {
   "cmd": ["bash", "-c", 
-          "g++ -std=c++14 '${file}' -o x && x" ],
+          "g++ -std=c++14 '${file}' -o x && ./x" ],
   "file_regex": 
         "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
   "working_dir": "${file_path}",
@@ -10,7 +10,7 @@
     {
       "name": "Run",
       "cmd": ["bash", "-c", 
-            "g++ -std=c++14 '${file}' -o x && x"]
+            "g++ -std=c++14 '${file}' -o x && ./x"]
     }
   ]
 }
