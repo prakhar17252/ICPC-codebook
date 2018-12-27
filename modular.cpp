@@ -34,17 +34,18 @@ vll modular_equation_solver(int a, int b, int n){
 int mod_inverse(int a, int n) {
 	int x, y; int d = extended_euclid(a, n, x, y);
 	if (d > 1) return -1;
-	return takemod(x,n);
+	return takemod(x, n);
 }
 
 // Chinese remainder theorem (special case): find z
 // such that z % x = a, z % y = b. Here, z is 
 // unique modulo M = lcm(x,y).
 // Return (z,M). On failure, M = -1.
-pii CRT(int x, int a, int y, int b) {
-  int s, t; int d = extended_euclid(x, y, s, t);
-  if (a%d != b%d) return mp(0, -1);
-  return mp(takemod(s*b*x+t*a*y,x*y)/d, x*y/d);
+pii CRT(int a1, int n1, int a2, int n2) {
+	int x, y; int d = extended_euclid(n1, n2, x, y);
+	int l = (n1 * n2) / d, A = (a2-a1);
+	if(A % d != 0) return mp(0, -1);
+	return mp(takemod(a1+(x*A/d%(n2/d))*n1, l), l);
 }
 
 // Chinese remainder theorem: find z such that
@@ -55,7 +56,7 @@ pii CRT(int x, int a, int y, int b) {
 pii CRT(const vll &x, const vll &a) {
 	pii ret = mp(a[0], x[0]);
 	for (int i = 1; i < x.size(); i++) {
-		ret = CRT(ret.ff, ret.ss, x[i], a[i]);
+		ret = CRT(ret.ff, ret.ss, a[i], x[i]);
 		if (ret.ss == -1) break;
 	} return ret;
 }
@@ -66,7 +67,7 @@ pii CRT(const vll &x, const vll &a) {
 // X = x + k * qa, Y = y - k * qb are also 
 // solutions of equation where k is any integer
 bool linear_diophantine(int a, int b, int c, 
-										int& x0, int& y0, int& g) {
+											int& x0, int& y0, int& g) {
 	g = extended_euclid(abs(a), abs(b), x0, y0);
 	if(c % g != 0) return false;
 	x0 *= c / g; y0 *= c / g;
