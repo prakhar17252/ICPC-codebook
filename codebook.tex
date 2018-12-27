@@ -264,10 +264,10 @@ For 64-bit unsigned integer type, use the suffix `\verb$ll$', i.e. \verb$__built
     $\sum_{k=0}^n k^5 = (2n^6 + 6n^5 + 5n^4 - n^2)/12$  & ${n \choose k} = \frac{n-k+1}{k} {n \choose k-1}$     \\
     $\sum_{k=0}^n x^k = (x^{n+1} - 1)/(x - 1)$  & $12! \approx 2^{28.8}$ \\
     $\sum_{k=0}^n kx^k = (x - (n+1)x^{n+1} + nx^{n+2})/(x-1)^2$	& $20! \approx 2^{61.1}$ \\
-    $1 + x + x^2 + \dots = 1 / (1 - x)$
+    $1 + x + x^2 + \dots = 1 / (1 - x)$ \\
+    $(x+a)^{-n} = \sum_{k=0}^{\infty} {-n \choose k} x^k a^{-n-k}$ \\
 \end{tabular}
 
-%$(x+a)^{-n} = \sum_{k=0}^{\infty} {-n \choose k} x^k a^{-n-k}$ \\
 %$(x+y)^z = \sum_{k=0}^{\infty} {z \choose k} x^k y^{z-k}$,\\
 %with ${z \choose k} = \frac{z\dots(z-k+1)}{k!}$.
 
@@ -304,11 +304,11 @@ Number of lattice paths from $(0,0)$ to $(a,b)$, restricted to east and north
 steps: ${a+b \choose a}$
 
 
-% \subsection{Multinomial theorem}
-% $(a_1+\dots+a_k)^n = \sum {n \choose n_1,\dots,n_k} a_1^{n_1} \dots a_k^{n_k}$,
-% where $n_i \ge 0$ and $\sum n_i=n$. \\
-% $${n \choose n_1,\dots,n_k} = M(n_1,\dots,n_k) = \frac{n!}{n_1! \dots n_k!}$$
-% $$M(a,\dots,b,c,\dots) = M(a+\dots+b,c,\dots) M(a,\dots,b)$$
+\subsection{Multinomial theorem}
+$(a_1+\dots+a_k)^n = \sum {n \choose n_1,\dots,n_k} a_1^{n_1} \dots a_k^{n_k}$,
+where $n_i \ge 0$ and $\sum n_i=n$. \\
+$${n \choose n_1,\dots,n_k} = M(n_1,\dots,n_k) = \frac{n!}{n_1! \dots n_k!}$$
+$$M(a,\dots,b,c,\dots) = M(a+\dots+b,c,\dots) M(a,\dots,b)$$
 
 
 \subsection{Catalan numbers}
@@ -366,14 +366,14 @@ Bell triangle: $B_r=a_{r,1}=a_{r-1,r-1}$, $a_{r,c}=a_{r-1,c-1}+a_{r,c-1}$.
 % $\sum_{n=0}^{\infty}p(n) x^n = \prod_{k=1}^{\infty} \left(\frac{1}{1-x^k}\right) = (\sum x^i)(\sum x^{2i})(\sum x^{3i}) \dots$ \\
 % $p(0) = 1$, $p(n) - p(n-1) - p(n-2) + p(n-5) + p(n-7) - \dots = 0$ ($+,+,-,-$ goes on; same for $s(n)$, but $s(0)\to n$.)
 
-% \subsection{Eulerian numbers}
-% $E(n,k)$ is the number of permutations with exactly
-% $k$ descents ($i: \pi_i < \pi_{i+1}$) /
-% ascents ($\pi_i > \pi_{i+1}$) /
-% excedances ($\pi_i > i$) /
-% $k+1$ weak excedances ($\pi_i \ge i$). \\
-% Formula: $E(n,k)=(k+1)E(n-1,k)+(n-k)E(n-1,k-1)$. \quad
-% $x^n = \sum_{k=0}^{n-1} E(n,k) {x+k \choose n}$.
+\subsection{Eulerian numbers}
+$E(n,k)$ is the number of permutations with exactly
+$k$ descents ($i: \pi_i < \pi_{i+1}$) /
+ascents ($\pi_i > \pi_{i+1}$) /
+excedances ($\pi_i > i$) /
+$k+1$ weak excedances ($\pi_i \ge i$). \\
+Formula: $E(n,k)=(k+1)E(n-1,k)+(n-k)E(n-1,k-1)$. \quad
+$x^n = \sum_{k=0}^{n-1} E(n,k) {x+k \choose n}$.
 
 % \subsection{Burnside's lemma}
 % The number of orbits under group $G$'s action on set $X$:\\
@@ -439,16 +439,16 @@ $f(x)^{p^n} \equiv f(x^{p^n}) \pmod{p}$
 \subsection{Euler's theorem} $a^{\phi(n)} \equiv 1\pmod{n}$, if $\gcd(a,n)=1$. \\
 \subsection{Wilson's theorem} $p$ is prime iff $(p - 1)! \equiv -1 \pmod p$.
 
-% \subsection{Mobius function}
-% $\mu(1) = 1$. $\mu(n) = 0$, if $n$ is not squarefree.
-% $\mu(n) = (-1)^s$, if $n$ is the product of $s$ distinct primes.
-% Let $f$, $F$ be functions on positive integers.
-% If for all $n \in N$, $F(n)=\sum_{d|n} f(d)$, then $f(n) = \sum_{d|n} \mu(d) F(\frac{n}{d})$,
-% and vice versa. \quad
-% $\phi(n) = \sum_{d|n} \mu(d) \frac{n}{d}$.
-% \quad $\sum_{d|n} \mu(d) = 1$. \\
-% If $f$ is multiplicative, then $\sum_{d|n} \mu(d) f(d) = \prod_{p|n}(1-f(p))$,
-% $\sum_{d|n} \mu(d)^2 f(d) = \prod_{p|n} (1+f(p))$.
+\subsection{Mobius function}
+$\mu(1) = 1$. $\mu(n) = 0$, if $n$ is not squarefree.
+$\mu(n) = (-1)^s$, if $n$ is the product of $s$ distinct primes.
+Let $f$, $F$ be functions on positive integers.
+If for all $n \in N$, $F(n)=\sum_{d|n} f(d)$, then $f(n) = \sum_{d|n} \mu(d) F(\frac{n}{d})$,
+and vice versa. \quad
+$\phi(n) = \sum_{d|n} \mu(d) \frac{n}{d}$.
+\quad $\sum_{d|n} \mu(d) = 1$. \\
+If $f$ is multiplicative, then $\sum_{d|n} \mu(d) f(d) = \prod_{p|n}(1-f(p))$,
+$\sum_{d|n} \mu(d)^2 f(d) = \prod_{p|n} (1+f(p))$.
 
 % \subsection{Legendre symbol} If $p$ is an odd prime, $a \in {\mathbb Z}$, then
 % $\left(\frac{a}{p}\right)$ equals $0$, if $p | a$; $1$ if $a$ is a quadratic
@@ -458,6 +458,7 @@ $f(x)^{p^n} \equiv f(x^{p^n}) \pmod{p}$
 % $\left(\frac{a}{p}\right) \left(\frac{b}{p}\right) = \left(\frac{ab}{p}\right)$
 % Law of Quadratic Reciprocity: for any distinct odd primes $p$ and $q$,
 % $\left(\frac{p}{q}\right) \left(\frac{q}{p}\right) = (-1)^{\frac{p-1}{2} \cdot \frac{q-1}{2}}$
+
 % \subsection{Jacobi symbol}  %Generalization of Legendre's symbol to any odd modulus. \\
 % If $n=p_1^{a_1} \cdots p_k^{a_k}$ is odd, then
 % $\left(\frac{a}{n}\right) = \prod_{i=1}^k \left(\frac{a}{p_i}\right)^{k_i}$.
