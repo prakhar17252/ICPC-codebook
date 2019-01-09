@@ -5,6 +5,7 @@
 struct edge {
 	int u, v, w;
 	edge(int u, int v, int w): u(u), v(v), w(w) {}
+	edge(int u, int v): u(u), v(v) {}
 };
 /* struct cmp {
 		bool operator()(const edge& a, const edge& b)
@@ -35,5 +36,5 @@ void Kruskal(int n) { //1-based
 	for(edge e : graph) {
 		int x = find(e.u); int y = find(e.v);
 		if(x == y) continue;
-		spanning_tree.pb(e); mincost += e.w; merge(e);
+		spanning_tree.pb(e); mincost += e.w; merge(edge(x, y));
 } }
