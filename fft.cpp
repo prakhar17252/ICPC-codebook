@@ -1,29 +1,40 @@
-const ld pi = acos(-1);
-auto FFT = [](vector<ld> a, vector<ld> b){
-  auto DFT = [](vector<complex<ld>>&a, bool inv){
-    int L=31-__builtin_clz(len(a)), n = 1 << L;
-    vector<complex<ld>> A(n);
-    for(int k = 0, r, i; k < n; A[r] = a[k++]) 
-      for(i = r = 0; i < L; (r<<=1) |= (k>>i++)&1);
-    complex<ld> w, wm, t;
-    for(int m = 2, j, k; m <= n; m <<= 1) {
-      w = {0, 2*pi/m}, wm = exp(inv ? -w : w);
-      for(k = 0; k < n; k += m)
-        for(j = 0, w = 1; j < m/2; ++j , w *= wm){
-          t = w * A[k+j+m/2]; 
-          A[k+j+m/2] = A[k+j]-t; A[k+j] += t;
-        }
-    }
-    return A;
-  };  
-  int n = 4<<31-__builtin_clz(max(len(a),len(b)));
-  vector<complex<ld>> A(n), B(n), CC(n);
-  for(int i = 0; i < n; ++i) 
-    A[i] = i<len(a)?a[i]:0, B[i] = i<len(b)?b[i]:0;
-  vector<complex<ld>> AA = DFT(A,0), BB = DFT(B,0);
-  for(int i = 0; i < n; ++i) CC[i] = AA[i]*BB[i];
-  vector<ld> c;
-  for(auto i:DFT(CC,1)) if(len(c)<len(a)+len(b)-1)
-    c.pb(i.real()/n+1e-5);
-  return c;
-};
+using cd = complex<ld>;
+const ld PI = acos(-1);
+
+void FFT(vector<cd> &a, bool invert) {
+  int n = a.size();
+  for(int i = 1, j = 0; i < n; i++) {
+    int bit = n >> 1;
+    for(; j & bit; bit >>= 1) j ^= bit;
+    j ^= bit;
+    if(i < j) swap(a[i], a[j]);
+  }
+
+  for(int len = 2; len <= n; len <<= 1) {
+    ld ang = 2 * PI / len * (invert ? -1 : 1);
+    cd wlen(cos(ang), sin(ang));
+    for(int i = 0; i < n; i += len) {
+      cd w(1);
+      for(int j = 0; j < len / 2; j++) {
+        cd u = a[i+j], v = a[i+j+len/2] * w;
+        a[i+j] = u + v; a[i+j+len/2] = u - v;
+        w *= wlen;
+  } } }
+
+  if(invert) for(cd &x : a) x /= n;
+}
+
+vll multiply(vll const& a, vll const& b) {
+  vector<cd> fa(all(a)), fb(all(b));
+  int n = 1; vll res(n);
+  while(n < a.size() + b.size()) n <<= 1;
+  fa.resize(n); fb.resize(n);
+
+  FFT(fa, false); FFT(fb, false); // FFT
+  for(int i = 0; i < n; i++) fa[i] *= fb[i];
+  FFT(fa, true); // Inverse FFT
+
+  for(int i = 0; i < n; i++) 
+    res[i] = round(fa[i].real());
+  return res;
+}
