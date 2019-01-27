@@ -20,8 +20,8 @@ ull pollard(ull n){
     while(d == 1){
       x = f(x, n);
       y = f(f(y, n), n);
-      ull m = abs(x-y);
-      a = m; b = n; d = gcd(a, b);
+      ull m = fabs(x-y);
+      a = m; b = n; d = __gcd(a, b);
     }
     if(d != n) return d;
     iter++; C = rand();
