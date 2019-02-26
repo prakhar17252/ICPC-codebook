@@ -26,9 +26,9 @@ void FFT(vector<cd> &a, bool invert) {
 
 vll multiply(vll const& a, vll const& b) {
   vector<cd> fa(all(a)), fb(all(b));
-  int n = 1; vll res(n);
+  int n = 1;
   while(n < a.size() + b.size()) n <<= 1;
-  fa.resize(n); fb.resize(n);
+  fa.resize(n); fb.resize(n); vll res(n);
 
   FFT(fa, false); FFT(fb, false); // FFT
   for(int i = 0; i < n; i++) fa[i] *= fb[i];
