@@ -1,25 +1,21 @@
-ull mul_mod(ull a, ull b, ull m){
+ull mul_mod(ull a, ull b, ull m) {
   ull y = (ull)((ld)a * (ld)b / m + 1.0 / 2) * m;
   ull x = a * b, r = x - y;
-  if ((ll) r < 0){
-    r = r + m; y = y - 1;
-  } return r;
-}
+  if ((ll) r < 0) { r = r + m; y = y - 1; } 
+  return r; }
 
 ull C, a, b;
-
-ull f(ull a, ull b){
+ull f(ull a, ull b) {
   return (mul_mod(a, a, b) + C) % b; }
 
-ull pollard(ull n){
+ull pollard(ull n) {
   if(!(n % 2)) return 2;
   C = 0; ull iter = 0;
   while(iter <= 1000){
     ull x, y, d;
     x = y = 2; d = 1;
     while(d == 1){
-      x = f(x, n);
-      y = f(f(y, n), n);
+      x = f(x, n); y = f(f(y, n), n);
       ull m = fabs(x-y);
       a = m; b = n; d = __gcd(a, b);
     }
@@ -55,10 +51,6 @@ map<ull, int> factors;
 //                in prime factorization of n
 void fact(ull n){
   if(!isPrime(n)){
-    ull fac = pollard(n);
-    fact(n/fac); fact(fac);
-  } else {
-    map<ull,int>::iterator it = factors.find(n);
-    if(it != factors.end()) (*it).ss++;
-    else factors[n] = 1;
-} }
+    ull fac = pollard(n); fact(n/fac); fact(fac);
+  } else factors[n]++;
+}
