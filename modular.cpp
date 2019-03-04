@@ -8,7 +8,7 @@ int lcm(int a, int b) {
   return (a / __gcd(a,b)) * b;
 }
 
-// returns gcd(a,b); finds x,y s.t. d = ax + by
+// returns gcd(a,b); finds x, y s.t. d = ax + by
 int extended_euclid(int a, int b, int &x, int &y) {
   int xx = y = 0; int yy = x = 1;
   while (b) {
@@ -63,7 +63,7 @@ pii CRT(const vll &x, const vll &a) {
 
 // computes x and y such that ax + by = c; 
 // on failure returns false. g is gcd(a, b)
-// int qa = b / g, qb = b / g;
+// int qa = b / g, qb = a / g;
 // X = x + k * qa, Y = y - k * qb are also 
 // solutions of equation where k is any integer
 bool linear_diophantine(int a, int b, int c, 
