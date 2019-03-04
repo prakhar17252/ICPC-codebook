@@ -5,7 +5,7 @@
 struct edge {
 	int u, v, w;
 	edge(int u, int v, int w): u(u), v(v), w(w) {}
-	edge(int u, int v): u(u), v(v) {}
+	edge(int u, int v): u(u), v(v), w(0) {}
 };
 /* struct cmp {
 		bool operator()(const edge& a, const edge& b)
@@ -22,19 +22,17 @@ bool edge_sort(const edge &a, const edge &b){
 int find(int u){
 	return dsu[u] == u ? u : dsu[u] = find(dsu[u]);}
 
-void merge(edge e) {
-	int u = e.u; int v = e.v;
-	if(u == v) return; //self loops
+void merge(int u, int v) {
 	if(sz[v] > sz[u]) swap(u, v);
 	dsu[v] = u;	sz[u] += sz[v]; }
 
 void Kruskal(int n) { //1-based
 	sort(all(graph), edge_sort);
-	for(int i = 1; i <= n; i++) {
+	for(int i = 0; i <= n; i++) {
 		dsu[i] = i;	sz[i] = 1; 
 	}
 	for(edge e : graph) {
 		int x = find(e.u); int y = find(e.v);
 		if(x == y) continue;
-		spanning_tree.pb(e); mincost += e.w; merge(edge(x, y));
+		spanning_tree.pb(e); mincost += e.w; merge(x, y);
 } }
