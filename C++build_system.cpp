@@ -14,3 +14,5 @@
     }
   ]
 }
+// -Wextra -O2 -Wl,--stack=268435456 -Wfloat-equal 
+// -D_GLIBCXX_DEBUG -D_GLIBCXX_DEBUG_PEDANTIC -Wall
