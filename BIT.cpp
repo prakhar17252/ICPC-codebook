@@ -8,10 +8,8 @@ struct BIT {
 			bit[i] += val; i += (i & -i);
 	} }
 	// For Range sum Update
-	// add(bit1, a, val);
-	// add(bit1, b+1, -val);
-	// add(bit2, a, val*(a-1));
-	// add(bit2, b+1, -val*b);
+	// add(bit1, a, val); add(bit1, b+1, -val);
+	// add(bit2,a, val*(a-1)); add(bit2,b+1, -val*b);
 
   int get(int i) {			// sum of a[1] .... a[i]
 		int sum = 0;
