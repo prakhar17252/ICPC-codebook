@@ -30,7 +30,7 @@ struct F {
   F& operator = (const int o)
   { this->n = o; this->d = 1; return *this; }
   F& operator += (const F &o) // Add -=, *=, /=
-  { *this = *this + o; return *this; }
+  { return *this = *this + o; }
 };
 ostream& operator << (ostream& os, const F &f)
 { return os << "(" << f.n <<"/"<< f.d << ")"; }
