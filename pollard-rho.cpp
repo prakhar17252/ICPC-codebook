@@ -27,7 +27,7 @@ bool MillerRabin(ll n) {
   vector<ll> bases({2, 3, 5, 7, 11, 13, 17, 
                   19, 23, 29, 31, 37, 41});
   for (ll a : bases) {
-    if (n <= a) break;
+    if (n - 1 <= a) break;
     bool comp = true;
     ll x = power(a, d, n);
     if (x == 1 || x == n-1) continue;
@@ -43,6 +43,7 @@ map<ll, int> factors;
 // Postcondition: factors[p] is the exponent of p
 //                in prime factorization of n
 void fact(ll n){
+  if (n == 1) return;
   if(!MillerRabin(n)){
     ll fac = pollardRho(n); fact(n/fac); fact(fac);
   } else factors[n]++;
