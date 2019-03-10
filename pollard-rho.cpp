@@ -1,56 +1,49 @@
-ull mul_mod(ull a, ull b, ull m) {
-  ull y = (ull)((ld)a * (ld)b / m + 1.0 / 2) * m;
-  ull x = a * b, r = x - y;
-  if ((ll) r < 0) { r = r + m; y = y - 1; } 
-  return r; }
+ll mul(ll x, ll y, ll m) {
+  if (y == 0) return 0;
+  if (y % 2) return (x + mul(x, y-1, m)) % m;
+  return mul((x + x) % m, y / 2, m); }
 
-ull C, a, b;
-ull f(ull a, ull b) {
-  return (mul_mod(a, a, b) + C) % b; }
+ll power(ll x, ll y, ll m) {
+  if (y == 0) return 1LL;
+  if (y % 2) return mul(x, power(x, y-1, m), m);
+  return power(mul(x, x, m), y/2, m); }
 
-ull pollard(ull n) {
-  if(!(n % 2)) return 2;
-  C = 0; ull iter = 0;
-  while(iter <= 1000){
-    ull x, y, d;
-    x = y = 2; d = 1;
-    while(d == 1){
-      x = f(x, n); y = f(f(y, n), n);
-      ull m = fabs(x-y);
-      a = m; b = n; d = __gcd(a, b);
-    }
-    if(d != n) return d;
-    iter++; C = rand();
-  } return 1;
-}
+ll pollardRho(ll n) {
+  if (n == 1) return 1; if (n % 2 == 0) return 2;
+  ll x = rng() % (n - 2) + 2, y = x, d = 1;
+  ll c = rng() % (n - 1) + 1;
+  while (d == 1) {
+    x = (mul(x,x,n)+c) % n; y = (mul(y,y,n)+c) % n;
+    y = (mul(y,y,n)+c) % n; d = __gcd(abs(x-y), n);
+    if (d == n) return pollardRho(n);
+  } return d; }
 
 // Rabin-Miller primality testing algorithm
-bool isPrime(ull n){
-  ull d = n-1, s = 0;
-  if(n <=3 || n == 5) return true;
-  if(!(n % 2)) return false;
-  while(!(d % 2)){ s++; d /= 2; }
-  for(ull i = 0; i < 32; i++){
-    ull a = rand(); a <<= 32;
-    a += rand(); a %= (n-3); a += 2;
-    ull x = power(a, d, n);   // make power ull
-    if(x == 1 || x == n-1) continue;
-    for(ull j = 1; j <= s-1; j++){
-        x = mul_mod(x, x, n);
-        if(x == 1) return false;
-        if(x == n-1) break;
-    }
-    if(x != n-1) return false;
-  } return true;
-}
+// deterministic for upto 2^64
+bool MillerRabin(ll n) {
+  if (n < 2 || (n > 2 && !(n % 2))) return false;
+  ll d = n - 1, r = 0;
+  while (!(d % 2)) d /= 2, r++;
+  vector<ll> bases({2, 3, 5, 7, 11, 13, 17, 
+                  19, 23, 29, 31, 37, 41});
+  for (ll a : bases) {
+    if (n <= a) break;
+    bool comp = true;
+    ll x = power(a, d, n);
+    if (x == 1 || x == n-1) continue;
+    for (int i = 0; i < r; i++) {
+      x = mul(x, x, n);
+      if (x == n-1) { comp = false; break; }
+    } if (comp) return false; }
+  return true; }
 
-map<ull, int> factors;
+map<ll, int> factors;
 // Precondition:  factors is an empty map, 
 //                n is a positive integer
-// Postcondition: factors[p] is the exponent of p 
+// Postcondition: factors[p] is the exponent of p
 //                in prime factorization of n
-void fact(ull n){
-  if(!isPrime(n)){
-    ull fac = pollard(n); fact(n/fac); fact(fac);
+void fact(ll n){
+  if(!MillerRabin(n)){
+    ll fac = pollardRho(n); fact(n/fac); fact(fac);
   } else factors[n]++;
 }
