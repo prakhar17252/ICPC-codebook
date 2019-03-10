@@ -19,15 +19,16 @@ ll pollardRho(ll n) {
   } return d; }
 
 // Rabin-Miller primality testing algorithm
-// deterministic for upto 2^64
+// deterministic for upto 3e23
+// replace a in bases with [2, n-2] for randomized
 bool MillerRabin(ll n) {
   if (n < 2 || (n > 2 && !(n % 2))) return false;
   ll d = n - 1, r = 0;
   while (!(d % 2)) d /= 2, r++;
   vector<ll> bases({2, 3, 5, 7, 11, 13, 17, 
-                  19, 23, 29, 31, 37, 41});
+                  19, 23, 29, 31, 37});
   for (ll a : bases) {
-    if (n - 1 <= a) break;
+    if (n - 1 <= a) break;  // 1 < a < n-1
     bool comp = true;
     ll x = power(a, d, n);
     if (x == 1 || x == n-1) continue;
