@@ -1,7 +1,8 @@
 // Returns maximum bipartite matching
 // The match can be recovered using the vector L
-// Works with 0 based too. Fast in practice
-
+// Works with 0 based too. Very Fast in practice
+// init with n, m -> sz of grp 1 & 2 (bipartite)
+// addEdge(x,y) -> edge bet x of grp1, y of grp2
 struct BipartiteMatcher {
   vector<vll> G; vll L, R, Viz;
   
