@@ -157,3 +157,17 @@ for(int i = 0; i < len(p); i++)
 		if(SegmentsIntersect(p[i], p[j], p[k], p[l]))
 			return false;
 		} return true; }
+// returns no of common tangents(inner/outer)
+// Common tangents of circles (c1, r1) & (c2, r2)
+// inner = true gives inner tangents
+// set r2=0 for tangent from pt c1 to circle(c2, r2)
+bool tangent(PT c1, ld r1, PT c2, ld r2, bool inner,
+                       vector<pair<PT,PT>> &out) {
+  if(inner) r2 = -r2;
+  PT d = c2 - c1;
+  ld dr = r1 - r2, d2 = dot(d, d), h2 = d2 - dr*dr;
+  if(abs(d2)<EPS || h2<0) return -1; //inf tangents
+  for(ld sign : {-1, 1}) {
+    PT v = (d*dr+RotateCCW90(d)*sqrtl(h2)*sign)/d2;
+    out.emplace_back(c1 + v*r1, c2 + v*r2);
+  } return 1 + (h2 > 0); }
