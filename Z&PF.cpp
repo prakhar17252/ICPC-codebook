@@ -28,9 +28,9 @@ vector<int> kmpsearch(string text, string pat){
 	while(i < n) {
 		if(pat[j] == text[i]){
 			j++; i++;
-		} if(j == m) {
-			res.pb(i-j);
-			j = p[j-1];
+		} 
+		if(j == m) {
+			res.pb(i-j); j = p[j-1];
 		} else if (i < n && pat[j] != text[i]){
 			if(j!= 0) j = p[j-1];
 			else i++;
