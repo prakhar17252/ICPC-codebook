@@ -1,27 +1,17 @@
-/*	Using instructions:
-		struct node *root = makenode();
-		insertword(root, s); */
-struct node {
-	struct node *ptr[26]; char ch; bool fin;
+
+// Node* root = new Node('\0'); : initialisation
+// insert(s, root); : insert word
+struct Node {
+  char ch; bool fin; Node* ptr[26];
+
+  Node(char ch = '\0') : ch(ch), fin(false) {
+    for (int i = 0; i < 26; i++) ptr[i] = nullptr;}
 };
 
-struct node *makenode(char c = '#') {
-	struct node *fnode = new node;
-	fnode->fin = false;
-	fnode->ch = c;
-	for(int i = 0; i < 26; i++)
-		fnode->ptr[i] = NULL;
-	
-	return fnode;
-};
-
-void insertword(struct node *root, string s) {
-	struct node *temp = root;
-	for(int i = 0; i < len(s); i++) {
-		int id = s[i] - 'a';
-		if(temp->ptr[id] == NULL) 
-			temp->ptr[id] = makenode(s[i]);
-		
-		temp = temp->ptr[id];
-	} temp->fin = true;
-}
+void insert(string s, Node* root) {
+  Node* temp = root;
+  for(char &ch : s) {
+    if(temp->ptr[ch - 'a'] == nullptr) 
+      temp->ptr[ch - 'a'] = new Node(ch);
+    temp = temp->ptr[ch - 'a'];
+  } temp->fin = true; }
