@@ -34,5 +34,5 @@ void Kruskal(int n) { //1-based
 	for(edge e : graph) {
 		int x = find(e.u); int y = find(e.v);
 		if(x == y) continue;
-		spanning_tree.pb(e); mincost += e.w; merge(x, y);
+		spanning_tree.pb(e); mincost+=e.w; merge(x, y);
 } }
