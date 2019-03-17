@@ -160,9 +160,9 @@ for(int i = 0; i < len(p); i++)
 // returns no of common tangents(inner/outer)
 // Common tangents of circles (c1, r1) & (c2, r2)
 // inner = true gives inner tangents
-// set r2=0 for tangent from pt c1 to circle(c2, r2)
-bool tangent(PT c1, ld r1, PT c2, ld r2, bool inner,
-                       vector<pair<PT,PT>> &out) {
+// set r2=0 for tangent from pt c1 to circle(c2,r2)
+bool tangent(PT c1, ld r1, PT c2, ld r2, bool inner
+                      , vector<pair<PT,PT>> &out) {
   if(inner) r2 = -r2;
   PT d = c2 - c1;
   ld dr = r1 - r2, d2 = dot(d, d), h2 = d2 - dr*dr;
