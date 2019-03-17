@@ -55,8 +55,8 @@ mt19937_64 rng(chrono::steady_clock::now()
 // #pragma comment(linker, "/stack:200000000")
 #pragma GCC optimize ("O3") // Ofast or O2
 #pragma GCC optimize ("unroll-loops")
-#pragma GCC target("sse,sse2,sse3,ssse3,sse4,
-              popcnt,abm,mmx,avx,tune=native")
+// #pragma GCC target("sse,sse2,sse3,ssse3,sse4,
+//              popcnt,abm,mmx,avx,tune=native")
 #define _CRT_SECURE_NO_WARNINGS
 #endif // ifdef ONLINE_JUDGE
 
@@ -68,24 +68,24 @@ ostream& operator<<(ostream& os,const pair<T,S>& v)
 { return os << v.ff << ' ' << v.ss; } 
 
 struct pair_hash {
-  inline size_t operator()(const pii & v) const {
+  inline size_t operator()(const pii &v) const {
 	  return v.ff * 31 + v.ss; }
 };
 
-const int mod = 1e9 + 7, inf = 2e18, ninf = -2e18;
+const ll mod = 1e9 + 7, inf = 2e18, ninf = -2e18;
 
-int takemod(int a, int mod = mod){ 
+ll takemod(ll a, ll mod = mod){ 
 	return ((a % mod) + mod) % mod; }
 
-int power(int x, int y, int mod = mod) {
-	int ans = 1; x = takemod(x, mod);
-	while(y) {
+ll power(ll x, ll y, ll mod = mod) {
+	ll ans = 1; x = takemod(x, mod);
+	while(y > 0) {
 		if(y % 2) ans = (x * ans) % mod;
 		x = (x * x) % mod; y /= 2;
 	}	return ans;
 }
 
-int modinv(int a, int mod = mod){
+ll modinv(ll a, int mod = mod){
 	return takemod(power(a, mod-2, mod)); }
 
 signed main() {
