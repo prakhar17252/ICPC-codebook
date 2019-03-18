@@ -60,13 +60,6 @@
 \fancyhead[R]{\thepage}
 \fancyfoot[C]{}
 
-\fancypagestyle{plain}
-{
-\fancyhead[L]{RuntimeTerror - IIIT-Delhi}
-\fancyhead[R]{\thepage}
-\fancyfoot[C]{}
-}
-
 \begin{document}
 % Disable balancing of columns on last page, which is ugly
 \begin{multicols*}{2}
@@ -430,8 +423,10 @@ Maximum number of divisors: 4, 12, 32, 64, 128, 240, 448, 768, 1344, 2304, 4032,
 
 \subsection{Euler's phi function}
 $\phi(n)=|\{m \in {\mathbb N}, m \le n, \gcd(m, n) = 1 \}|$. \\
+
 $\phi(mn) = \frac{\phi(m) \phi(n) \gcd(m,n)}{\phi(\gcd(m,n))}$. \quad
-$\phi(p^a) = p^{a-1} (p-1)$. \quad
+$\phi(p^a) = p^{a-1} (p-1)$. \quad \\
+
 $\sum_{d|n} \phi(d) = \sum_{d|n} \phi(\frac{n}{d}) = n$.
 
 \subsection{Fermat's theorem}  $a^p \equiv a \pmod{p}$ if $p$ is prime. \\
