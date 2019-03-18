@@ -1,4 +1,3 @@
-
 // Node* root = new Node('\0'); : initialisation
 // insert(s, root); : insert word
 struct Node {
