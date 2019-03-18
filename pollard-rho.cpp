@@ -1,5 +1,6 @@
 ll mul(ll x, ll y, ll m) {
   if (y == 0) return 0;
+  if (x < (ll) 9e18 / y) return (x * y) % m;
   if (y % 2) return (x + mul(x, y-1, m)) % m;
   return mul((x + x) % m, y / 2, m); }
 
