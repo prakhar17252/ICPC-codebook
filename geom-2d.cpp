@@ -17,6 +17,10 @@ struct PT{
 		return fabs(x-p.x) < EPS && fabs(y-p.y) < EPS;}
 	bool operator != (const PT &p) const {
 		return fabs(x-p.x) > EPS || fabs(y-p.y) > EPS;}
+  bool operator < (const PT &p) const {
+    return tie(x, y) < tie(p.x, p.y); }
+  PT& operator = (const PT &p) {
+    this->x = p.x; this->y = p.y; return *this; }
 };
 ld dot(PT p, PT q) { return p.x*q.x+p.y*q.y; }
 ld dist2(PT p, PT q) { return dot(p-q,p-q); }
