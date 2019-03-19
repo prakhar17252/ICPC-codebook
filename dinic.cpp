@@ -1,61 +1,59 @@
-// init(N) where N is no of vertices
-// add(u, v, cap) add edge from u to v
-// GetMaxFlow(S, T) to get max flow from S to T
-// Running time: O(n^3). Very fast in practice
-// Solved for N = 5000 in 0.10 seconds on SPOJ
+// initialise with no. of vertices
 // To get flows, look at edges with non zero flow
+// maxFlow(S, T) to get maxflow from S to T
+// Runtime:
+// Non-scaling = O(V^2E), lower constant
+// Scaling=O(VElog(U)), U is maxEdge capacity
+// Scaling = true has higher constant
 
-const int MAXN = 5000, inf = 2e18;
-int src, snk, N, nxt[MAXN+5], dist[MAXN+5];
-vector<edge>E[MAXN+5];
+using T = ll; const bool SCALING = true;
+struct Dinic {
+  struct Edge {
+    int to, from; T cap, flow;
+  };
 
-struct edge{
-	int v, cap, opposite, flow;
+  vector<int> lvl, ptr; vector<vector<Edge>> adj;
+  int lim = 1;
+  const T INF = numeric_limits<T>::max();
+
+  Dinic(int n) : adj(n+10),lvl(n+10),ptr(n+10){}
+
+  // dir = true for directed edge from a -> b
+  void addEdge(int a, int b, T cap, bool dir){
+    adj[a].pb({b, len(adj[b]), cap, 0}); 
+    adj[b].pb({a, len(adj[a])-1, dir ? 0: cap, 0});
+  }
+
+  bool bfs(int s, int t) {
+    queue<int> q({s}); reset(lvl, -1); lvl[s] = 0;
+    while (!q.empty() && lvl[t] == -1) {
+      int v = q.front(); q.pop();
+      for (Edge e : adj[v]) {
+        if (lvl[e.to] == -1 && e.flow < e.cap && 
+            (!SCALING || e.cap - e.flow >= lim)) {
+                  q.push(e.to); lvl[e.to]=lvl[v]+1;
+        } 
+    } } return lvl[t] != -1;
+  }
+
+  T dfs(int v, T flow, int t) {
+    if (v == t || !flow) return flow;
+    for (; ptr[v] < len(adj[v]); ptr[v]++) {
+      Edge &e = adj[v][ptr[v]];
+      if (lvl[e.to] != lvl[v] + 1) continue;
+      T toFlow = min(flow, e.cap - e.flow);
+      if (T pushed = dfs(e.to, toFlow, t)) {
+        adj[e.to][e.from].flow -= pushed;
+        e.flow += pushed; return pushed;
+    } } return 0;
+  }
+
+  ll maxFlow(int s, int t) {
+    ll flow = 0; lim = SCALING ? (1LL << 30) : 1;
+    for (; lim > 0; lim >>= 1) {
+      while (bfs(s, t)) { reset(ptr, 0);
+        while (T pushed = dfs(s, INF, t))
+          flow += pushed;
+    } } return flow;
+  }
 };
-
-void init(int _n) { N = _n; }
-
-void add(int u, int v, int cap) {
-	E[u].pb({v, cap, len(E[v]), 0});
-	E[v].pb({u, 0, len(E[u])-1, 0});
-}
-
-bool bfs() {
-	reset(dist, -1); dist[src] = 0;
-	queue<int> q({src});
-	while(!q.empty()) {
-		int u = q.front(); q.pop();
-		for(int i = 0; i<E[u].size(); i++) {
-			if(E[u][i].cap > E[u][i].flow) {
-				int v = E[u][i].v;
-				if(dist[v] == -1) {
-					dist[v] = dist[u] +1;
-					q.push(v);
-		} }	}
-	} return dist[snk] != -1;
-}
-
-int dfs(int u, int sentFlow) {
-	if(u == snk || sentFlow == 0) return sentFlow;
-	for(; nxt[u] < E[u].size(); nxt[u]++) {
-		int v = E[u][nxt[u]].v, c = E[u][nxt[u]].cap;
-		int f = E[u][nxt[u]].flow;
-		int opposite = E[u][nxt[u]].opposite;
-		if(dist[v] == dist[u]+1 && c > f) {
-			int tmp = dfs(v,min(sentFlow,c-f));
-			if(tmp != 0) {
-				E[u][nxt[u]].flow += tmp;
-				E[v][opposite].flow -= tmp;
-				return tmp;
-		}	}
-	} return 0;
-}
-
-ll GetMaxFlow(int S, int T) {
-	src = S; snk = T; ll totalFlow = 0;
-	while(bfs()) {
-		memset(nxt,0,sizeof(nxt));
-		while(int sentFlow = dfs(src,inf))
-			totalFlow += sentFlow;
-	} return totalFlow;
-}
