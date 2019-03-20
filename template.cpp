@@ -5,7 +5,9 @@
 using namespace std;
 using namespace __gnu_pbds;
 
-using ll = long long; using ld = long double;
+using ll = long long; using pll = pair<int, int>;
+using ld = long double; using pii = pair<int, int>;
+using dbl = long double; using vll = vector<int>;
 template <class T, class cmp = less<T>>
 using ordered_set = tree<T, null_type, cmp, 
 rb_tree_tag, tree_order_statistics_node_update>;
@@ -13,23 +15,17 @@ rb_tree_tag, tree_order_statistics_node_update>;
 // find_by_order(k): K-th element(counting from 0)
 
 #define int ll
-#define dbl ld
 #define pb emplace_back
 #define mp make_pair
 #define ff first
 #define ss second
 #define all(v) v.begin(), v.end()
 #define len(a) int(a.size())
-#define sqrt sqrtl
-#define gcd __gcd
 #define reset(a, val) memset(a, val, sizeof(a))
 #define initialise reset
 #define fnu for(int i = 0; i < n; i++)
 #define rev(s) reverse(all(s))
 // onlyunique(v) v.erase(unique(all(v)),v.end())
-#define vll vector<int>
-#define pll pair<int, int>
-#define pii pll
 #define fast_exp power
 #define dbg trace
 // copy(a, a+n, ostream_iterator<int>(cout, " "))
@@ -50,7 +46,7 @@ mt19937_64 rng(chrono::steady_clock::now()
 		__f(sep + 1, args...);
 	}
 #else
-#define trace(...)
+#define trace(...) 0
 #define endl '\n'
 // #pragma comment(linker, "/stack:200000000")
 #pragma GCC optimize ("O3") // Ofast or O2
@@ -58,7 +54,7 @@ mt19937_64 rng(chrono::steady_clock::now()
 // #pragma GCC target("sse,sse2,sse3,ssse3,sse4,
 //              popcnt,abm,mmx,avx,tune=native")
 #define _CRT_SECURE_NO_WARNINGS
-#endif // ifdef ONLINE_JUDGE
+#endif // ifndef ONLINE_JUDGE
 
 template<class T> // replace set with vector
 ostream& operator << (ostream& os, const set<T>& v)
