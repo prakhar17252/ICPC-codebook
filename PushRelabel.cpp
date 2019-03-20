@@ -8,9 +8,8 @@ struct MaxFlow {
   using T = long long; T INF = 1e18;
   struct Edge { int to, from; T f, c; };
   
-  vector<vector<Edge>> g; vector<T> ec;
+  vector<vector<Edge>> g; vector<T> ec; vll H;
   vector<Edge*> cur; vector<vector<int>> hs;
-  vector<int> H;
 
   MaxFlow(int n) : g(n),ec(n),cur(n),hs(2*n),H(n){}
 
