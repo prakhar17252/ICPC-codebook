@@ -5,7 +5,7 @@
 // Push relabel in O(V^2 √E) with gap heuristic
 
 struct MaxFlow {
-  using T = long long;
+  using T = long long; T INF = 1e18;
   struct Edge { int to, from; T f, c; };
   
   vector<vector<Edge>> g; vector<T> ec;
@@ -17,7 +17,7 @@ struct MaxFlow {
   void add_edge(int s, int t, T cap, T rcap = 0) {
     if (s == t) return;
     g[s].push_back({t, len(g[t]), 0, cap});
-    g[t].push_back({s, len(g[s])-1, 0, rcap});
+    g[t].push_back({s, len(g[s]), 0, rcap});
   }
 
   void add_flow(Edge& e, T f) {
@@ -37,7 +37,7 @@ struct MaxFlow {
         int u = hs[hi].back(); hs[hi].pop_back();
         while (ec[u] > 0) {
           if (cur[u] == g[u].data() + len(g[u])) {
-            H[u] = 1e9;
+            H[u] = INF;
             for(Edge &e : g[u]) {
               if (e.c && H[u] > H[e.to]+1)
               { H[u] = H[e.to] + 1, cur[u] = &e; }
