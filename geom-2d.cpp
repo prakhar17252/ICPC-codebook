@@ -119,15 +119,15 @@ VP CircleLineIntersection(PT a, PT b, PT c, ld r) {
 	ld A = dot(b, b), B = dot(a, b);
 	ld C = dot(a, a) - r*r, D = B*B - A*C;
 	if(D < -EPS) return ret;
-	ret.pb(c+a+b*(-B+sqrt(D+EPS))/A);
-	if(D>EPS) ret.pb(c+a+b*(-B-sqrt(D))/A);
+	ret.pb(c+a+b*(-B+sqrtl(D+EPS))/A);
+	if(D>EPS) ret.pb(c+a+b*(-B-sqrtl(D))/A);
 	return ret; }
 // find intersection of circle at center a with
 // radii r with circle at center b with radii R
 VP CircleCircleIntersection(PT a,PT b,ld r,ld R) {
-	VP ret; ld d = sqrt(dist2(a, b));
+	VP ret; ld d = sqrtl(dist2(a, b));
 	if(d>r+R || d+min(r, R) < max(r, R)) return ret;
-	ld x =(d*d-R*R+r*r)/(2*d), y = sqrt(r*r-x*x);
+	ld x =(d*d-R*R+r*r)/(2*d), y = sqrtl(r*r-x*x);
 	PT v =(b-a)/d; ret.pb(a+v*x+RotateCCW90(v)*y);
 	if(y > 0) ret.pb(a+v*x - RotateCCW90(v)*y);
 	return ret; }
@@ -165,7 +165,7 @@ for(int i = 0; i < len(p); i++)
 // Common tangents of circles (c1, r1) & (c2, r2)
 // inner = true gives inner tangents
 // set r2=0 for tangent from pt c1 to circle(c2,r2)
-bool tangent(PT c1, ld r1, PT c2, ld r2, bool inner
+int tangent(PT c1, ld r1, PT c2, ld r2, bool inner
                       , vector<pair<PT,PT>> &out) {
   if(inner) r2 = -r2;
   PT d = c2 - c1;
