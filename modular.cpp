@@ -37,6 +37,7 @@ int mod_inverse(int a, int n) {
 	return takemod(x, n);
 }
 
+// Use CRT in python
 // Chinese remainder theorem (special case): find z
 // such that z % x = a, z % y = b. Here, z is 
 // unique modulo M = lcm(x,y).
