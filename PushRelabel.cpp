@@ -2,7 +2,7 @@
 // To get flows, look at edges with non zero flow
 // max_flow(S, T) to get max flow from S to T
 // Runtime:
-// Push relabel in O(V^2 √E) with gap heuristic
+// Push relabel in O(V^2 E^0.5) with gap heuristic
 
 struct MaxFlow {
   using T = long long; T INF = 1e18;
