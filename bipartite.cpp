@@ -14,25 +14,21 @@ struct BipartiteMatcher {
   bool Match(int node) {
     if(Viz[node]) return false;
     Viz[node] = true;
-    
     for(auto vec: G[node]) {
       if(R[vec] == -1) {
         L[node] = vec; R[vec] = node; return true;
     } }
-    
     for(auto vec: G[node]) {
       if(Match(R[vec])) {
         L[node] = vec; R[vec] = node; return true;
 		} } return false; }
   
   int GetMaximumMatching() {
-    int ok = true;
-    while (ok--) {
-      fill(all(Viz), 0);
+    int ok = 1, ret = 0;
+    while (ok--) { fill(all(Viz), 0);
       for(int i = 0; i < len(L); ++i)
         if(L[i] == -1) ok |= Match(i);
     }
-    int ret = 0;
     for(int i = 0; i < len(L); ++i) 
 			ret += (L[i] != -1);
     return ret; }
