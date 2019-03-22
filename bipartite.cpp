@@ -2,7 +2,7 @@
 // Works with 1 based only. Very Fast in practice.
 // init with n, m -> sz of grp 1 & 2 (bipartite)
 // addEdge(x, y) -> edge b/w x of grp1, y of grp2
-struct BipartiteMatcher {
+struct BipartiteMatcher { // O(E V^0.5)
   vector<vll> graph; vll L, R, dist;
   const int NIL = 0; int n, m;
   BipartiteMatcher(int n, int m) : n(n), m(m), 
