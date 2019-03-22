@@ -5,27 +5,23 @@
 // Non-scaling = O(V^2E), lower constant
 // Scaling=O(VElog(U)), U is maxEdge capacity
 // Scaling = true has higher constant
-
 using T = ll; const bool SCALING = true;
 struct Dinic {
-  struct Edge {
-    int to, from; T cap, flow;
-  };
-
+  struct Edge { int to, from; T cap, flow; };
   vector<int> lvl, ptr; vector<vector<Edge>> adj;
   int lim = 1;
   const T INF = numeric_limits<T>::max();
 
   Dinic(int n) : adj(n+10),lvl(n+10),ptr(n+10){}
 
-  // dir = true for directed edge from a -> b
-  void addEdge(int a, int b, T cap, bool dir){
+  void addEdge(int a, int b, T cap, T rcap = 0){
     adj[a].pb({b, len(adj[b]), cap, 0}); 
-    adj[b].pb({a, len(adj[a])-1, dir ? 0: cap, 0});
+    adj[b].pb({a, len(adj[a])-1, rcap, 0});
   }
 
   bool bfs(int s, int t) {
-    queue<int> q({s}); reset(lvl, -1); lvl[s] = 0;
+    queue<int> q({s}); 
+    fill(all(lvl), -1); lvl[s] = 0;
     while (!q.empty() && lvl[t] == -1) {
       int v = q.front(); q.pop();
       for (Edge e : adj[v]) {
@@ -51,7 +47,8 @@ struct Dinic {
   ll maxFlow(int s, int t) {
     ll flow = 0; lim = SCALING ? (1LL << 30) : 1;
     for (; lim > 0; lim >>= 1) {
-      while (bfs(s, t)) { reset(ptr, 0);
+      while (bfs(s, t)) { 
+        fill(all(ptr), 0);
         while (T pushed = dfs(s, INF, t))
           flow += pushed;
     } } return flow;
