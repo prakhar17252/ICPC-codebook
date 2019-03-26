@@ -1,9 +1,7 @@
-from sys import stdin, stdout, setrecursionlimit
+import sys; sys.setrecursionlimit(1000000)
+sys.stdin = open('input.txt', 'r')
+sys.stdout = open('output.txt', 'w')
+input = sys.stdin.readline; range = xrange
 
-stdin = open('input.txt', 'r')
-stdout = open('output.txt', 'w')
-
-inp = int(stdin.readline())   # Similar to input()
-stdout.write(str(inp))     # Use only with strings
-
-setrecursionlimit(1000000)
+# output using sys.stdout.write(str(x)) --OR--
+# add output as str in op=[] & print('\n'.join(op))
