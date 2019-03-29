@@ -1,15 +1,7 @@
-// This is the famous "Yarin sieve", 
-// for use when memory is tight.
-#define MAXSIEVE 100000000 // Primes till this
-#define MAXSIEVEHALF (MAXSIEVE/2)
-#define MAXSQRT 5000 // sqrt(MAXSIEVE)/2
-char a[MAXSIEVE/16+2];
-bool isprime(int n)
-{return n==2 || (n&1 && a[n>>4]&(1<<((n>>1)&7))); }
+// N = 1e8 -> (343 ms, 12MB), 1e7 -> (15 ms, 1.2MB)
+const int N = 100000000; bitset<N+1> prime;
+prime.set(); prime[0] = prime[1] = 0;
+for (int i = 4; i <= N; i += 2) prime[i] = 0;
 
-memset(a, 255, sizeof(a));
-a[0] = 0xFE;
-for(int i = 1; i < MAXSQRT; i++)
-	if(a[i >> 3] && (1 << (i & 7)))
-		for(int j = 3*i+1; j<MAXSIEVEHALF; j += 2*i+1)
-			a[j>>3] &= ~(1 << (j & 7));
+for (int i = 3; i*i <= N; i += 2) if (prime[i])
+  for (int j = i*i; j <= N; j += i+i) prime[j] = 0;
