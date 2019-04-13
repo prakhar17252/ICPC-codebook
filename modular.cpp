@@ -53,7 +53,7 @@ pii CRT(int a1, int n1, int a2, int n2) {
 // z % x[i] = a[i] for all i. Solution is
 // unique mod M = lcm_i (x[i]). Return (z,M). On
 // failure, M = -1. Note that we do not require 
-// the a[i]'s to be relatively prime.
+// the x[i]'s to be relatively prime.
 pii CRT(const vll &x, const vll &a) {
 	pii ret = mp(a[0], x[0]);
 	for (int i = 1; i < x.size(); i++) {
