@@ -27,7 +27,7 @@ bool MillerRabin(ll n) {
   ll d = n - 1, r = 0;
   while (!(d % 2)) d /= 2, r++;
   vector<ll> bases({2, 3, 5, 7, 11, 13, 17, 
-                  19, 23, 29, 31, 37});
+    19, 23, 29, 31, 37}); // 2, 3, 5, 7 for 3e9
   for (ll a : bases) {
     if (n - 1 <= a) break;  // 1 < a < n-1
     bool comp = true;
