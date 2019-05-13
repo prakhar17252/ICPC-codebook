@@ -44,8 +44,8 @@ struct Dinic {
     } } return 0;
   }
 
-  ll maxFlow(int s, int t) {
-    ll flow = 0; lim = SCALING ? (1LL << 30) : 1;
+  T maxFlow(int s, int t) {
+    T flow = 0; lim = SCALING ? (1LL << 30) : 1;
     for (; lim > 0; lim >>= 1) {
       while (bfs(s, t)) { 
         fill(all(ptr), 0);
