@@ -10,7 +10,7 @@ struct Node {
 void insert(string s, Node* root) {
   Node* temp = root;
   for(char &ch : s) {
-    if(temp->ptr[ch - 'a'] == nullptr) 
-      temp->ptr[ch - 'a'] = new Node(ch);
+    if(temp->ptr[ch - 'a'] == nullptr)
+    { temp->ptr[ch - 'a'] = new Node(ch); }
     temp = temp->ptr[ch - 'a'];
   } temp->fin = true; }

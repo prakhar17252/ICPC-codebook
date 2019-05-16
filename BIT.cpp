@@ -4,18 +4,16 @@ struct BIT {
   BIT(int n) : n(n), bit(n+1), k(ceil(log2(n))) {}
 
   void add(int i, int val) { // update a[i] += val
-		while(i <= n) {
-			bit[i] += val; i += (i & -i);
-	} }
-	// For Range sum Update
-	// add(bit1, a, val); add(bit1, b+1, -val);
-	// add(bit2,a, val*(a-1)); add(bit2,b+1, -val*b);
+		while(i <= n) { bit[i] += val; i += (i & -i); }
+	}
+	// For Range sum Update in [l, r]
+	// add(bit1, l, val); add(bit1, r+1, -val);
+	// add(bit2,l, val*(l-1)); add(bit2,r+1, -val*r);
 
   int get(int i) {			// sum of a[1] .... a[i]
 		int sum = 0;
-		while(i > 0) {
-			sum += bit[i]; i -= (i & -i);
-		} return sum;
+		while(i > 0) { sum += bit[i]; i -= (i & -i); }
+		return sum;
   }
 	// For range sum query a[1] ... a[i]
 	// return get(bit1, i) * i - get(bit2, i);
@@ -34,6 +32,6 @@ struct BIT {
 			// bit[pos + pw] <= v for upper_bound
 			if(pos + pw <= n && sum + bit[pos + pw] < v)
 				sum += bit[pos += pw];
-		} return pos + 1; 
+		} return pos + 1;
   }
 };
