@@ -23,7 +23,8 @@ void update(int cur, int s, int e,
                           int l, int r, int val) {
   propogate(cur, s, e);
   if(e < l || s > r) return;
-  if(l <= s && e <= r) { lz[cur] += val; return; }
+  if(l <= s && e <= r)
+  { lz[cur] += val; propogate(cur, s, e); return; }
   update(lc, s, mid, l, r, val);
   update(rc, mid+1, e, l, r, val);
   seg[cur] = merge(seg[lc], seg[rc]);
@@ -46,13 +47,11 @@ void update(int l, int r, int val)
 int query(int l, int r)
 { return query(1, 1, n, l, r); }
 
-// In mergesort tree, in complete overlap in query,
-// replace lower and upper to remove equality sign
-/*    Number of elements <= k in [l, r]
-  upper_bound(all(seg[cur]), k) - seg[cur].begin();
+// Number of elements <= k in [l, r]
+// upper_bound(all(seg[cur]), k) - seg[cur].begin();
+// Number of elements >= k in [l, r]
+// seg[cur].end() - lower_bound(all(seg[cur]), k);
+/* Replace lower & upper to remove equality sign */
 
-      Number of elements >= k in [l, r]
-  seg[cur].end() - lower_bound(all(seg[cur]), k);
-*/
 // merge(all(seg[lc]), all(seg[rc]),
 //                       back_inserter(seg[cur]));
