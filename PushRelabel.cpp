@@ -3,7 +3,7 @@
 // Edge e in g[i] goes from i to e.to
 // Runtime:
 // Push relabel in O(V^2 E^0.5) with gap heuristic
-using T = long long; T INF = 1e18;
+using T = long long; T INF = 1e9;
 struct Edge { int to, rev; T f, c; };
 
 struct MaxFlow {
@@ -23,7 +23,7 @@ struct MaxFlow {
     Edge &back = g[e.to][e.rev];
     if (!ec[e.to] && f) hs[H[e.to]].pb(e.to);
     e.c -= f; ec[back.to] -= f; back.f -= f;
-    e.f += f; ec[e.to] += f; back.c += f; 
+    e.f += f; ec[e.to] += f; back.c += f;
   }
 
   T max_flow(int s, int t) {
@@ -49,10 +49,10 @@ struct MaxFlow {
             hi = H[u];
           }
           else if(cur[u]->c&&H[u]==H[cur[u]->to]+1)
-            add_flow(*cur[u],min(ec[u],cur[u]->c));         
+            add_flow(*cur[u],min(ec[u],cur[u]->c));
           else ++cur[u];
         }
         while (hi >= 0 && hs[hi].empty()) --hi;
-    } } return -ec[s]; 
+    } } return -ec[s];
   }
 };
