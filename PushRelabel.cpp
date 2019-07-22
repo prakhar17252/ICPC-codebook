@@ -1,9 +1,8 @@
-// Initialise with no. of vertices
+// Initialise with no. of vertices + 1
 // To get flows, look at edges with positive f in g
 // Edge e in g[i] goes from i to e.to
-// Runtime:
-// Push relabel in O(V^2 E^0.5) with gap heuristic
-using T = long long; T INF = 1e9;
+// Runtime: O(V^2 E^0.5) with gap heuristic
+using T = long long;
 struct Edge { int to, rev; T f, c; };
 
 struct MaxFlow {
@@ -36,7 +35,7 @@ struct MaxFlow {
         int u = hs[hi].back(); hs[hi].pop_back();
         while (ec[u] > 0) {
           if (cur[u] == g[u].data() + len(g[u])) {
-            H[u] = INF;
+            H[u] = 1e9;
             for(Edge &e : g[u]) {
               if (e.c && H[u] > H[e.to]+1)
               { H[u] = H[e.to] + 1, cur[u] = &e; }
