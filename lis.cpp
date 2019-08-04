@@ -1,4 +1,4 @@
-// Given a list of numbers of length n, this
+// Given a list of numbers of length n, this 
 // returns the longest increasing subsequence.
 //
 // Running time: O(n log n)

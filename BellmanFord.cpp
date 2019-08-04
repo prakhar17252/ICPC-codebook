@@ -10,7 +10,7 @@ int w[N][N], dist[N], prev[N], n;
 bool BellmanFord (int src){
   fill(dist, dist+N, inf); reset(prev, -1);
   dist[src] = 0;
-
+  
   for (int k = 0; k < n; k++)
     for (int i = 0; i < n; i++)
       for (int j = 0; j < n; j++)
@@ -18,6 +18,6 @@ bool BellmanFord (int src){
           if (k == n-1) return false;
           dist[j] = dist[i] + w[i][j];
           prev[j] = i;
-        }
+        }	  
   return true;
 }

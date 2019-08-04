@@ -1,8 +1,8 @@
 // Maximal palindrome lengths centered around each
-// position in a string(incl. positions between
-// characters) and returns them in left-to-right
+// position in a string(incl. positions between 
+// characters) and returns them in left-to-right 
 // order of centres. Linear time.
-// Ex: "opposes" ->
+// Ex: "opposes" -> 
 // [0, 1, 0, 1, 4, 1, 0, 1, 0, 1, 0, 3, 0, 1, 0]
 vector<int> fastLongestPalindromes(string str) {
   int i = 0, j, d, s, e, lLen, palLen=0;
@@ -22,6 +22,6 @@ vector<int> fastLongestPalindromes(string str) {
   }
   res.pb(palLen); lLen = len(res);
   s = lLen-2; e = s-(2 * len(str) + 1 - lLen);
-  for(i = s; i > e; i--) {
+  for(i = s; i > e; i--) { 
     d = i-e-1; res.pb(min(d, res[i])); }
   return res;}

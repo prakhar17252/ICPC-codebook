@@ -38,6 +38,15 @@ int query(int cur, int s, int e, int l, int r) {
   int q2 = query(rc, mid+1, e, l, r);
   return merge(q1, q2);
 }
+
+void build() { build(1, 1, n); }
+void update(int pos, int val)
+{ update(1, 1, n, pos, pos, val); }
+void update(int l, int r, int val)
+{ update(1, 1, n, l, r, val); }
+int query(int l, int r)
+{ return query(1, 1, n, l, r); }
+
 // Number of elements <= k in [l, r]
 // upper_bound(all(seg[cur]), k) - seg[cur].begin();
 // Number of elements >= k in [l, r]

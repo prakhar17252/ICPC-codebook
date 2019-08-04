@@ -15,20 +15,20 @@ struct Dinic {
   Dinic(int n) : adj(n+10),lvl(n+10),ptr(n+10){}
 
   void addEdge(int a, int b, T cap, T rcap = 0){
-    adj[a].pb({b, len(adj[b]), cap, 0});
+    adj[a].pb({b, len(adj[b]), cap, 0}); 
     adj[b].pb({a, len(adj[a])-1, rcap, 0});
   }
 
   bool bfs(int s, int t) {
-    queue<int> q({s});
+    queue<int> q({s}); 
     fill(all(lvl), -1); lvl[s] = 0;
     while (!q.empty() && lvl[t] == -1) {
       int v = q.front(); q.pop();
       for (Edge e : adj[v]) {
-        if (lvl[e.to] == -1 && e.flow < e.cap &&
+        if (lvl[e.to] == -1 && e.flow < e.cap && 
             (!SCALING || e.cap - e.flow >= lim)) {
                   q.push(e.to); lvl[e.to]=lvl[v]+1;
-        }
+        } 
     } } return lvl[t] != -1;
   }
 
@@ -47,7 +47,7 @@ struct Dinic {
   T maxFlow(int s, int t) {
     T flow = 0; lim = SCALING ? (1LL << 30) : 1;
     for (; lim > 0; lim >>= 1) {
-      while (bfs(s, t)) {
+      while (bfs(s, t)) { 
         fill(all(ptr), 0);
         while (T pushed = dfs(s, INF, t))
           flow += pushed;

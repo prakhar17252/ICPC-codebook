@@ -26,7 +26,7 @@
   {0pt}
   {}
   [\vspace{4pt}\titlerule]
-
+  
 % \titleformat{\section}
 %   {\normalfont\Large\bfseries}{\thesection}{1em}{}[{\titlerule[0.8pt]}]
 % \titleformat{\subsection}
@@ -42,10 +42,10 @@
     columns=fixed,
     showstringspaces=false,
     extendedchars=true,
-    breaklines=true,
+    breaklines=true, 
     prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
     % frame=single,
-    \setlength{\columnseprule}{1pt},
+    \setlength{\columnseprule}{1pt}, 
     rulecolor=\color[rgb]{0.75,0.75,0.75},
     showtabs=false,
     showspaces=false,
@@ -78,20 +78,20 @@
 % \lstinputlisting[language=c++]{mcmf4.cpp}
 
 \subsection{Max Bipartite Matching (Hopcroft-Karp)} % Stanford
-\lstinputlisting[language=c++]{MaxBipartiteMatching.cpp}
+\lstinputlisting[language=c++]{bipartite.cpp}
 
 
 \section{Geometry}
 
 \subsection{Miscellaneous Geometry} % Stanford
-\lstinputlisting[language=c++]{Geometry2D.cpp}
+\lstinputlisting[language=c++]{geom-2d.cpp}
 
 
 \subsection{Convex hull} % Brian Bi
-\lstinputlisting[language=c++]{ConvexHull.cpp}
+\lstinputlisting[language=c++]{monotone.cpp}
 
-% \subsection{Minimum Enclosing Disk (Weizl)}
-% \lstinputlisting[language=c++]{WelzlMinEnclosingCircle.cpp}
+% \subsection{Minimum Enclosing Disk (Weizl)} 
+% \lstinputlisting[language=c++]{welzl.cpp}
 
 \subsection{Pick's Theorem (Text)} % Wesley May
 For a polygon with all vertices on lattice points, $A = i + b/2 - 1$, where $A$
@@ -102,10 +102,10 @@ there is no generalization to higher dimensions)
 \section{Math Algorithms}
 
 \subsection{Yarin Sieve} % Jimmy Mårdell (Yarin)
-\lstinputlisting[language=c++]{PrimeSieve.cpp}
+\lstinputlisting[language=c++]{yarin.cpp}
 
 \subsection{Modular arithmetic and linear Diophantine solver} % Stanford
-\lstinputlisting[language=c++]{ModularFunctions.cpp}
+\lstinputlisting[language=c++]{modular.cpp}
 
 \subsection{Gaussian elimination} % Stanford
 \lstinputlisting[language=c++]{gaussian.cpp}
@@ -130,57 +130,57 @@ solution is unique iff the rank of the matrix equals the number of variables.
 \lstinputlisting[language=c++]{fft.cpp}
 
 \subsection{Pollard rho and (Rabin-Miller)} % Qiyu Zhu
-\lstinputlisting[language=c++]{PollardRho_MillerRabin.cpp}
+\lstinputlisting[language=c++]{pollard-rho.cpp}
 
 \subsection{Euler's Totient} % Andre Hahn Pereira
-\lstinputlisting[language=c++]{Totient.cpp}
+\lstinputlisting[language=c++]{totient.cpp}
 
 \section{Graphs}
 
 \subsection{Strongly connected components} % Stanford (modified by Brian Bi)
-\lstinputlisting[language=c++]{SCC.cpp}
+\lstinputlisting[language=c++]{scc.cpp}
 
 \subsection{Bridges} % Andre Hahn Pereira
-\lstinputlisting[language=c++]{Bridge_CutPoints.cpp}
+\lstinputlisting[language=c++]{bridges.cpp}
 
 \subsection{Bellman Ford}
 \lstinputlisting[language=c++]{BellmanFord.cpp}
 
 \subsection{Dijkstra}
-\lstinputlisting[language=c++]{Dijkstra.cpp}
+\lstinputlisting[language=c++]{dijkstra.cpp}
 
 \subsection{Floyd Warshall}
 \lstinputlisting[language=c++]{FloydWarshall.cpp}
 
 \subsection{Kruskal(MST)}
-\lstinputlisting[language=c++]{Kruskal.cpp}
+\lstinputlisting[language=c++]{KruskalMST.cpp}
 
 \subsection{Centroid Decompostion}
-\lstinputlisting[language=c++]{CentroidDecomposition.cpp}
+\lstinputlisting[language=c++]{centroid_decomposition.cpp}
 
-\subsection{Lowest Common Ancestor}
+\subsection{Lowest Common Ancestor} 
 \lstinputlisting[language=c++]{LCA.cpp}
 
-\subsection{Heavy Light Decomposition(HLD)}
+\subsection{Heavy Light Decomposition(HLD)} 
 \lstinputlisting[language=c++]{HLD.cpp}
 
 
 \section{Strings}
 
 \subsection{Suffix arrays} % Stanford
-\lstinputlisting[language=c++]{SuffixArray.cpp}
+\lstinputlisting[language=c++]{suffix-array.cpp}
 
 \subsection{Palindromic Tree} % Stanford
-\lstinputlisting[language=c++]{PalindromicTree.cpp}
+\lstinputlisting[language=c++]{palindromictree.cpp}
 
 \subsection{Trie} % Brian Bi
 \lstinputlisting[language=c++]{Trie.cpp}
 
 \subsection{Longest palindromic substring(Manacher)} % Brian Bi
-\lstinputlisting[language=c++]{Manacher.cpp}
+\lstinputlisting[language=c++]{manacher.cpp}
 
 \subsection{Z \& Prefix Function, Knuth Morris Pratt (KMP)} % Brian Bi
-\lstinputlisting[language=c++]{KMP_Z_PrefixFunction.cpp}
+\lstinputlisting[language=c++]{Z&PF.cpp}
 
 \section{Data Structures}
 
@@ -188,33 +188,33 @@ solution is unique iff the rank of the matrix equals the number of variables.
 \lstinputlisting[language=c++]{BIT.cpp}
 
 \subsection{Binary Indexed Tree (2D BIT)} % Brian Bi
-\lstinputlisting[language=c++]{2DBIT.cpp}
+\lstinputlisting[language=c++]{2dBIT.cpp}
 
 \subsection{Segment Tree with Lazy Propagation} % Brian Bi
-\lstinputlisting[language=c++]{SegTree.cpp}
+\lstinputlisting[language=c++]{segtree.cpp}
 
 \subsection{Sparse Table RMQ} % Brian Bi
-\lstinputlisting[language=c++]{SparseTableRMQ.cpp}
+\lstinputlisting[language=c++]{sparsetablermq.cpp}
 
 \section{Miscellaneous}
 
 \subsection{Stable Marriage} % Brian Bi
-\lstinputlisting[language=c++]{StableMarriage.cpp}
+\lstinputlisting[language=c++]{stablemp.cpp}
 
 \subsection{2-SAT} % Brian Bi
-\lstinputlisting[language=c++]{2SAT.cpp}
+\lstinputlisting[language=c++]{2sat.cpp}
 
 \subsection{LCS} % Brian Bi
 \lstinputlisting[language=c++]{LCS.cpp}
 
 \subsection{LIS} % Brian Bi
-\lstinputlisting[language=c++]{LIS.cpp}
+\lstinputlisting[language=c++]{lis.cpp}
 
 \subsection{Ternary Search} % Brian Bi
 \lstinputlisting[language=c++]{TernarySearch.cpp}
 
 \subsection{C ++ Template} % Brian Bi
-\lstinputlisting[language=c++]{Template.cpp}
+\lstinputlisting[language=c++]{template.cpp}
 
 \subsection{C ++ Build System} % Brian Bi
 \lstinputlisting[language=c++]{C++build_system.cpp}
@@ -223,7 +223,7 @@ solution is unique iff the rank of the matrix equals the number of variables.
 \lstinputlisting[language=Java]{BigIntJava.java}
 
 \subsection{Java Template} % Brian Bi
-\lstinputlisting[language=Java]{JavaTemplate.java}
+\lstinputlisting[language=Java]{javatemplate.java}
 
 \subsection{Python Fast I/O} % Brian Bi
 \lstinputlisting[language=Python]{FastIOPython.py}

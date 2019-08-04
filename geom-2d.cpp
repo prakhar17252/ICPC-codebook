@@ -76,8 +76,9 @@ bool SegmentsIntersect(PT a, PT b, PT c, PT d) {
 	          	&& dot(c-b, d-b) > 0) return false;
 		return true;
 	}
-	if((cross(d-a, b-a)*cross(c-a, b-a) > 0) ||
-	    (cross(a-c, d-c)*cross(b-c, d-c) > 0))
+	if(cross(d-a, b-a)*cross(c-a, b-a) > 0)
+		return false;
+	if(cross(a-c, d-c)*cross(b-c, d-c) > 0)
 		return false;
 	return true; }
 //get intersection of line passing through a,b

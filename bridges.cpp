@@ -17,14 +17,14 @@ void dfs(int u, int p = -1, int d = 0){
 				//Excluding root
 				if(p != -1) isCutpt = true;
 				//For root
-				else if(adj[u].size() > 1)
+				else if(adj[u].size() > 1) 
 					isCutpt = true;
 			}
 			//Bridges
 			if(fup[v] > dep[u]) bridges.pb(mp(u,v));
-
+			
 		}
-		else fup[u] = min(fup[u], dep[v]);
+		else fup[u] = min(fup[u], dep[v]);		 
 	}
 	//Cut - Vertices
 	if(isCutpt) cutPts.pb(u);

@@ -3,7 +3,7 @@ vector<pii> adj[N];
 bool vis[N] = {0}; int d[N];
 void dijkstra(int v, int n){
 	fill(d, d+n, inf); d[v] = 0;
-	priority_queue<pii, vector<pii>,
+	priority_queue<pii, vector<pii>, 
 							greater<pii>> pq;
 	pq.push(mp(d[v], v));
 	while(!pq.empty()){
@@ -13,7 +13,7 @@ void dijkstra(int v, int n){
 			if(d[it.ff] > d[u] + it.ss) {
 				d[it.ff] = d[u] + it.ss;
 				pq.push({d[it.ff], it.ff});
-			}
-		}
-	}
+			}	
+		} 
+	} 
 }
