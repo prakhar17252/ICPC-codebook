@@ -5,7 +5,7 @@
 struct BipartiteMatcher { // O(E V^0.5)
   vector<vll> graph; vll L, R, dist;
   const int NIL = 0; int n, m;
-  BipartiteMatcher(int n, int m) : n(n), m(m), 
+  BipartiteMatcher(int n, int m) : n(n), m(m),
           graph(n+1), L(n+1), R(m+1), dist(n+1) {}
 
   void add_edge(int u, int v) { graph[u].pb(v); }

@@ -1,10 +1,10 @@
 const int MAXN = 105000;
 
 struct node {
-    int nxt[26], len, suflink, num;
+  int nxt[26], len, suflink, num;
 };
 
-int len; string s; node tree[MAXN]; 
+int len; string s; node tree[MAXN];
 // node 1: root of len -1, node 2: root of len 0
 int num;
 int suff;           // max suffix palindrome
@@ -17,10 +17,10 @@ bool addLetter(int pos) {
   while (true) {
     curlen = tree[cur].len;
     if(pos-curlen > 0 && s[pos-1-curlen] == s[pos])
-      break;  
+      break;
     cur = tree[cur].suflink;
-  }       
-  if(tree[cur].nxt[let]) {  
+  }
+  if(tree[cur].nxt[let]) {
     suff = tree[cur].nxt[let]; return false;
   }
   suff = ++num;
@@ -36,8 +36,8 @@ bool addLetter(int pos) {
     curlen = tree[cur].len;
     if(pos-curlen > 0 && s[pos-1-curlen]==s[pos]){
       tree[num].suflink=tree[cur].nxt[let]; break;
-    }       
-  }           
+    }
+  }
   tree[num].num = 1 + tree[tree[num].suflink].num;
   return true;
 }

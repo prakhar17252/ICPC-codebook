@@ -3,12 +3,9 @@
 // Note that all of the algorithms described here
 // work on nonnegative integers.
 
-// computes lcm(a,b)
-int lcm(int a, int b) {
-  return (a / __gcd(a,b)) * b;
-}
+int lcm(int a, int b) { return (a/__gcd(a,b))*b; }
 
-// returns gcd(a,b); finds x, y s.t. d = ax + by
+// returns d=gcd(a,b); finds x, y s.t. d = ax + by
 int extended_euclid(int a, int b, int &x, int &y) {
   int xx = y = 0; int yy = x = 1;
   while (b) {
@@ -39,9 +36,9 @@ int mod_inverse(int a, int n) {
 
 // Use CRT in python
 // Chinese remainder theorem (special case): find z
-// such that z % x = a, z % y = b. Here, z is 
-// unique modulo M = lcm(x,y).
-// Return (z,M). On failure, M = -1.
+// such that z % n1 = a1, z % n2 = a2. Here, z is
+// unique modulo M = lcm(n1, n2).
+// Return (z, M). On failure, M = -1.
 pii CRT(int a1, int n1, int a2, int n2) {
 	int x, y; int d = extended_euclid(n1, n2, x, y);
 	int l = (n1 * n2) / d, A = (a2-a1);
@@ -52,22 +49,22 @@ pii CRT(int a1, int n1, int a2, int n2) {
 // Chinese remainder theorem: find z such that
 // z % x[i] = a[i] for all i. Solution is
 // unique mod M = lcm_i (x[i]). Return (z,M). On
-// failure, M = -1. Note that we do not require 
+// failure, M = -1. Note that we do not require
 // the x[i]'s to be relatively prime.
-pii CRT(const vll &x, const vll &a) {
-	pii ret = mp(a[0], x[0]);
-	for (int i = 1; i < x.size(); i++) {
-		ret = CRT(ret.ff, ret.ss, a[i], x[i]);
+pii CRT(const vll &prime, const vll &rem) {
+	pii ret = mp(rem[0], prime[0]);
+	for (int i = 1; i < prime.size(); i++) {
+		ret = CRT(ret.ff, ret.ss, rem[i], prime[i]);
 		if (ret.ss == -1) break;
 	} return ret;
 }
 
-// computes x and y such that ax + by = c; 
+// computes x and y such that ax + by = c;
 // on failure returns false. g is gcd(a, b)
 // int qa = b / g, qb = a / g;
-// X = x + k * qa, Y = y - k * qb are also 
+// X = x + k * qa, Y = y - k * qb are also
 // solutions of equation where k is any integer
-bool linear_diophantine(int a, int b, int c, 
+bool linear_diophantine(int a, int b, int c,
 											int& x0, int& y0, int& g) {
 	g = extended_euclid(abs(a), abs(b), x0, y0);
 	if(c % g != 0) return false;

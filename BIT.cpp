@@ -1,7 +1,7 @@
 struct BIT {
   vector<int> bit;        // 1 based elements
   int n, k;
-  BIT(int n) : n(n), bit(n+1), k(ceil(log2(n))) {}
+  BIT(int n) : n(n), bit(n+1), k(ceil(log2(n + 1))) {}
 
   void add(int i, int val) { // update a[i] += val
 		while(i <= n) { bit[i] += val; i += (i & -i); }

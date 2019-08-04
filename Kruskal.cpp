@@ -28,9 +28,7 @@ void merge(int u, int v) {
 
 void Kruskal(int n) { //1-based
 	sort(all(graph), edge_sort);
-	for(int i = 0; i <= n; i++) {
-		dsu[i] = i;	sz[i] = 1; 
-	}
+	iota(dsu, dsu+n+1, 0); fill(sz, sz+1+n, 1);
 	for(edge e : graph) {
 		int x = find(e.u); int y = find(e.v);
 		if(x == y) continue;

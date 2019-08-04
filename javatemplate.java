@@ -2,10 +2,10 @@ import java.util.*; import java.lang.*;
 import java.io.*;
 
 public class Main{
-	public static void solve(PrintWriter out) 
+	public static void solve(PrintWriter out)
 														throws Exception{}
 
- 	public static void main(String[] args) 
+ 	public static void main(String[] args)
 														throws Exception{
  		PrintWriter out = new PrintWriter(System.out);
  		solve(out); out.close();
@@ -14,7 +14,7 @@ public class Main{
 	static class in{
 	 static BufferedReader b = new BufferedReader
 				(new InputStreamReader(System.in));
-	 static StringTokenizer t = 
+	 static StringTokenizer t =
 											new StringTokenizer("");
 		static String next() throws Exception{
 			while (!t.hasMoreTokens())
