@@ -1,61 +1,65 @@
-const int MAXN = 105000;
+// int b[2] = {31, 29}, m[2] = {1e9+9,1e9+11};
 
-struct node {
-    int nxt[26], len, suflink, num;
-};
+struct PalindromicTree {
+  struct node {
+    int next[26] = {0};
+    int len = 0; int sufflink = 0;
+    int occ = 0; int endpos = -1;
+    // string str; int h[2] = {0};
+  };
 
-int len; string s; node tree[MAXN]; 
-// node 1: root of len -1, node 2: root of len 0
-int num;
-int suff;           // max suffix palindrome
-ll ans;
+  // [3, num] denote the different palindromes
+  PalindromicTree(string s) : s(s) {
+    tree.resize(s.size() + 5); num = 2; suff = 2;
+    tree[1].len = -1; tree[1].sufflink = 1;
+    tree[2].len = 0; tree[2].sufflink = 1;
+    for (int i = 0; i < len(s); i++) addLetter(i);
 
-bool addLetter(int pos) {
-  int cur = suff, curlen = 0;
-  int let = s[pos] - 'a';
-
-  while (true) {
-    curlen = tree[cur].len;
-    if(pos-curlen > 0 && s[pos-1-curlen] == s[pos])
-      break;  
-    cur = tree[cur].suflink;
-  }       
-  if(tree[cur].nxt[let]) {  
-    suff = tree[cur].nxt[let]; return false;
+    for (int i = num; i > 2; i--)
+      tree[tree[i].sufflink].occ += tree[i].occ;
   }
-  suff = ++num;
-  tree[num].len = tree[cur].len + 2;
-  tree[cur].nxt[let] = num;
 
-  if(tree[num].len == 1) {
-    tree[num].suflink = 2; tree[num].num = 1;
+  string s; vector<node> tree;
+  int num, suff;
+
+  // Returns true if new distinct palindrome
+  // formed by adding this letter
+  bool addLetter(int pos) {
+    int cur = suff, curlen = 0, let = s[pos] - 'a';
+
+    while (true) {
+      curlen = tree[cur].len;
+      if(pos-1-curlen>=0&&s[pos-1-curlen]==s[pos])
+        break;
+      cur = tree[cur].sufflink;
+    }
+
+    if (tree[cur].next[let])
+    { suff = tree[cur].next[let]; tree[suff].occ++;
+      return false; }
+
+    suff = ++num; tree[num].len = tree[cur].len+2;
+    tree[num].occ++; tree[num].endpos = pos;
+    tree[cur].next[let] = num;
+
+    if (tree[num].len == 1) {
+      tree[num].sufflink = 2;
+      // tree[num].h[i] = let + 1;
+      // tree[num].str += s[pos];
+      return true;
+    }
+
+    // tree[num].h[i] = ((let + 1) +
+    // (let+1)*power(b[i], tree[num].len-1, m[i]) +
+    //          tree[cur].h[i] * b[i]) % m[i];
+
+    // tree[num].str = s[pos]+tree[cur].str+s[pos];
+
+    while (true) {
+      cur=tree[cur].sufflink; curlen=tree[cur].len;
+      if(pos-1-curlen>=0&&s[pos-1-curlen]==s[pos])
+      tree[num].sufflink=tree[cur].next[let];break;
+    }
     return true;
   }
-  while(true){
-    cur = tree[cur].suflink;
-    curlen = tree[cur].len;
-    if(pos-curlen > 0 && s[pos-1-curlen]==s[pos]){
-      tree[num].suflink=tree[cur].nxt[let]; break;
-    }       
-  }           
-  tree[num].num = 1 + tree[tree[num].suflink].num;
-  return true;
-}
-
-void initTree() {
-  num = 2; suff = 2;
-  tree[1].len = -1; tree[1].suflink = 1;
-  tree[2].len = 0; tree[2].suflink = 1;
-}
-
-int main() {
-  cin >> s;
-  len = s.size();
-  initTree();
-
-  for (int i = 0; i < len; i++)
-  { addLetter(i); ans += tree[suff].num; }
-
-  cout << ans << endl;
-  return 0;
-}
+};
