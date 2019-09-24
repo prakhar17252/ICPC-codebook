@@ -1,16 +1,16 @@
 template <class T> class treap_set {
 private:
+  struct item; using pitem = item*;
+  pitem root_ = nullptr; mt19937_64 rnd; // init
   struct item {
     ll prior; int cnt, rev;
     T key, lazy, fsum; pitem l, r;
 
     item(T x, ll p) {
-      lazy = 0LL; key = fsum = x; cnt = 1;
+      lazy = 0LL * T(); key = fsum = x; cnt = 1;
       rev = 0; l = r = nullptr; prior = p;
     }
   };
-  using pitem = item*; pitem root_ = nullptr;
-  mt19937_64 rng; // initialise
 
   int cnt(pitem it) { return it ? it->cnt : 0; }
 
@@ -32,7 +32,7 @@ private:
 
   void push(pitem t) {
     if (!t) return; update(t->l, t->lazy, t->rev);
-    update(t->r, t->lazy, t->rev); t->lazy = 0LL;
+    update(t->r, t->lazy, t->rev); t->lazy=0LL*T();
     if (t->rev) { swap(t->l, t->r); } t->rev = 0;
   }
 
@@ -40,7 +40,7 @@ private:
   void merge(pitem& t, pitem l, pitem r) {
     push(l); push(r);
     if (!l || !r) { t = l ? l : r; }
-    else if (l->prior > r->prior) {
+    else if (l->prior > r->prior)
     { merge(l->r, l->r, r); t = l; }
     else { merge(r->l, l, r->l); t = r; }
     upd_cnt(t); upd_sum(t);
@@ -79,11 +79,12 @@ private:
   }
 public:
   // To do something in [l, r], split at
-  // pos = l and r+1, do reqd. operation, and merge
+  // pos = r+1 and l, do reqd. operation, and merge
+  int size() { return cnt(root_); }
 
   void insert(int pos, T x) {
     if (pos > size()) return;
-    pitem it = new item(x, rng()));
+    pitem it = new item(x, rnd());
     insert(root_, it, pos);
   }
 
