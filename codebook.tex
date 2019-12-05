@@ -70,15 +70,17 @@
 % New codebook
 \section{Flow and matching}
 
-\subsection{Max flow (Push Relabel)} % Stanford
-\lstinputlisting[language=c++]{PushRelabel.cpp}
+\subsection{Max flow (Dinic)} % Stanford
+\lstinputlisting[language=c++]{dinic.cpp}
 
-% \subsection{Min-cost max-flow (successive shortest paths)}
-% % Frank Chu and Igor Naverniouk (modified by Brian Bi)
-% \lstinputlisting[language=c++]{mcmf4.cpp}
+\subsection{Min-cost max-flow}
+\lstinputlisting[language=c++]{MinCostMaxFlow.cpp}
 
 \subsection{Max Bipartite Matching (Hopcroft-Karp)} % Stanford
 \lstinputlisting[language=c++]{bipartite.cpp}
+
+\subsection{General Matching} % Stanford
+\lstinputlisting[language=c++]{GeneralMatching.cpp}
 
 
 \section{Geometry}
@@ -90,41 +92,36 @@
 \subsection{Convex hull} % Brian Bi
 \lstinputlisting[language=c++]{monotone.cpp}
 
-% \subsection{Minimum Enclosing Disk (Weizl)} 
-% \lstinputlisting[language=c++]{welzl.cpp}
-
 \subsection{Pick's Theorem (Text)} % Wesley May
 For a polygon with all vertices on lattice points, $A = i + b/2 - 1$, where $A$
 is the area, $i$ is the number of lattice points strictly within the polygon,
-and $b$ is the number of lattice points on the boundary of the polygon. (Note,
-there is no generalization to higher dimensions)
+and $b$ is the number of lattice points on the boundary of the polygon.
 
 \section{Math Algorithms}
 
-\subsection{Yarin Sieve} % Jimmy Mårdell (Yarin)
+\subsection{Sieve} % Jimmy Mårdell (Yarin)
 \lstinputlisting[language=c++]{yarin.cpp}
 
 \subsection{Modular arithmetic and linear Diophantine solver} % Stanford
 \lstinputlisting[language=c++]{modular.cpp}
 
 \subsection{Gaussian elimination} % Stanford
-\lstinputlisting[language=c++]{gaussian.cpp}
+\lstinputlisting[language=c++]{RREF.cpp}
 
-
-\subsection{Solving linear systems (Text)} % Brian Bi
-To solve a general system of linear equations, put it into matrix form and
-compute the reduced row echelon form. For example,
-\begin{align*}2x + y &= 5 \\ 3x + 2y &= 6\end{align*}
-corresponds to the matrix
-\[ \left[ \begin{array}{cc|c} 2 & 1 & 5 \\ 3 & 2 & 6 \end{array} \right] \]
-with RREF
-\[ \left[ \begin{array}{cc|c} 1 & 0 & 4 \\ 0 & 1 & -3 \end{array} \right] \]
-After row reduction, if any row has a 1 in the rightmost column and 0
-everywhere else, then the system is inconsistent and has no solution.
-Otherwise, to find a solution, set the variable corresponding to the leftmost 1
-in each column equal to the corresponding value in the rightmost column, and
-set all other variables to 0. Ignore rows consisting entirely of 0. The
-solution is unique iff the rank of the matrix equals the number of variables.
+% \subsection{Solving linear systems (Text)} % Brian Bi
+% To solve a general system of linear equations, put it into matrix form and
+% compute the reduced row echelon form. For example,
+% \begin{align*}2x + y &= 5 \\ 3x + 2y &= 6\end{align*}
+% corresponds to the matrix
+% \[ \left[ \begin{array}{cc|c} 2 & 1 & 5 \\ 3 & 2 & 6 \end{array} \right] \]
+% with RREF
+% \[ \left[ \begin{array}{cc|c} 1 & 0 & 4 \\ 0 & 1 & -3 \end{array} \right] \]
+% After row reduction, if any row has a 1 in the rightmost column and 0
+% everywhere else, then the system is inconsistent and has no solution.
+% Otherwise, to find a solution, set the variable corresponding to the leftmost 1
+% in each column equal to the corresponding value in the rightmost column, and
+% set all other variables to 0. Ignore rows consisting entirely of 0. The
+% solution is unique iff the rank of the matrix equals the number of variables.
 
 \subsection{Fast Fourier transform (FFT)} % Stanford
 \lstinputlisting[language=c++]{fft.cpp}
@@ -146,14 +143,14 @@ solution is unique iff the rank of the matrix equals the number of variables.
 \subsection{Bellman Ford}
 \lstinputlisting[language=c++]{BellmanFord.cpp}
 
-\subsection{Dijkstra}
-\lstinputlisting[language=c++]{dijkstra.cpp}
+% \subsection{Dijkstra}
+% \lstinputlisting[language=c++]{dijkstra.cpp}
 
-\subsection{Floyd Warshall}
-\lstinputlisting[language=c++]{FloydWarshall.cpp}
+% \subsection{Floyd Warshall}
+% \lstinputlisting[language=c++]{FloydWarshall.cpp}
 
-\subsection{Kruskal(MST)}
-\lstinputlisting[language=c++]{KruskalMST.cpp}
+% \subsection{Kruskal(MST)}
+% \lstinputlisting[language=c++]{KruskalMST.cpp}
 
 \subsection{Centroid Decompostion}
 \lstinputlisting[language=c++]{centroid_decomposition.cpp}
@@ -164,11 +161,10 @@ solution is unique iff the rank of the matrix equals the number of variables.
 \subsection{Heavy Light Decomposition(HLD)} 
 \lstinputlisting[language=c++]{HLD.cpp}
 
-
 \section{Strings}
 
-\subsection{Suffix arrays} % Stanford
-\lstinputlisting[language=c++]{suffix-array.cpp}
+% \subsection{Suffix arrays} % Stanford
+% \lstinputlisting[language=c++]{suffix-array.cpp}
 
 \subsection{Palindromic Tree} % Stanford
 \lstinputlisting[language=c++]{palindromictree.cpp}
@@ -176,13 +172,16 @@ solution is unique iff the rank of the matrix equals the number of variables.
 \subsection{Trie} % Brian Bi
 \lstinputlisting[language=c++]{Trie.cpp}
 
-\subsection{Longest palindromic substring(Manacher)} % Brian Bi
-\lstinputlisting[language=c++]{manacher.cpp}
+% \subsection{Longest palindromic substring(Manacher)} % Brian Bi
+% \lstinputlisting[language=c++]{manacher.cpp}
 
 \subsection{Z \& Prefix Function, Knuth Morris Pratt (KMP)} % Brian Bi
 \lstinputlisting[language=c++]{Z&PF.cpp}
 
 \section{Data Structures}
+
+\subsection{Implicit Treap} % Brian Bi
+\lstinputlisting[language=c++]{Treap.cpp}
 
 \subsection{Binary Indexed Tree (BIT)} % Brian Bi
 \lstinputlisting[language=c++]{BIT.cpp}
@@ -198,8 +197,14 @@ solution is unique iff the rank of the matrix equals the number of variables.
 
 \section{Miscellaneous}
 
-\subsection{Stable Marriage} % Brian Bi
-\lstinputlisting[language=c++]{stablemp.cpp}
+% \subsection{Stable Marriage} % Brian Bi
+% \lstinputlisting[language=c++]{stablemp.cpp}
+
+\subsection{Berlekamp Massey} % Brian Bi
+\lstinputlisting[language=c++]{BerlekampMassey.cpp}
+
+\subsection{Convex Hull Trick} % Brian Bi
+\lstinputlisting[language=c++]{CHT.cpp}
 
 \subsection{2-SAT} % Brian Bi
 \lstinputlisting[language=c++]{2sat.cpp}
@@ -219,8 +224,8 @@ solution is unique iff the rank of the matrix equals the number of variables.
 \subsection{C ++ Build System} % Brian Bi
 \lstinputlisting[language=c++]{C++build_system.cpp}
 
-\subsection{Java BigInt} % Brian Bi
-\lstinputlisting[language=Java]{BigIntJava.java}
+% \subsection{Java BigInt} % Brian Bi
+% \lstinputlisting[language=Java]{BigIntJava.java}
 
 \subsection{Java Template} % Brian Bi
 \lstinputlisting[language=Java]{javatemplate.java}
@@ -228,13 +233,19 @@ solution is unique iff the rank of the matrix equals the number of variables.
 \subsection{Python Fast I/O} % Brian Bi
 \lstinputlisting[language=Python]{FastIOPython.py}
 
+\subsection{Mobius Function} % Brian Bi
+\lstinputlisting[language=c++]{MobiusFunction.cpp}
+
+\subsection{K-Bit Subsets} % Brian Bi
+\lstinputlisting[language=c++]{KBitSubsets.cpp}
+
 % Bit Tricks {{{
 
 \subsection{Bit tricks}
 Clearing the lowest 1 bit: \verb$x & (x - 1)$, all trailing 1's: \verb$x & (x + 1)$ \\
 Setting the lowest 0 bit: \verb$x | (x + 1)$ \\
 Enumerating subsets of a bitmask $m$: \\
-\verb|x=0; do { ...; x=(x+1+~m)&m; } while (x!=0);| \\
+\verb|for (submask = mask; ; submask = (submask - 1) & mask)| \\
 \verb$__builtin_ctz/__builtin_clz$ returns the number of trailing/leading zero bits. \\
 \verb$__builtin_popcount(unsigned x)$ counts 1-bits (slower than table lookups). \\
 For 64-bit unsigned integer type, use the suffix `\verb$ll$', i.e. \verb$__builtin_popcountll$.
@@ -339,11 +350,11 @@ $S_{n,k} = S_{n-1,k-1} + k S_{n-1,k}$.
 $S_{n,1} = S_{n,n} = 1$.
 $x^n = \sum_{k=0}^n S_{n,k}\,x^{\underline k}$
 
-\subsection{Bell numbers}
-$B_n$ is the number of partitions of $n$ elements.
-$B_0, \ldots = 1,1,2,5,15,52,203,\ldots$ \\
-$B_{n+1} = \sum_{k=0}^n {n \choose k} B_k = \sum_{k=1}^n S_{n,k}$.
-Bell triangle: $B_r=a_{r,1}=a_{r-1,r-1}$, $a_{r,c}=a_{r-1,c-1}+a_{r,c-1}$.
+% \subsection{eulernumbers}
+% $B_n$ is the number of partitions of $n$ elements.
+% $B_0, \ldots = 1,1,2,5,15,52,203,\ldots$ \\
+% $B_{n+1} = \sum_{k=0}^n {n \choose k} B_k = \sum_{k=1}^n S_{n,k}$.
+% Bell triangle: $B_r=a_{r,1}=a_{r-1,r-1}$, $a_{r,c}=a_{r-1,c-1}+a_{r,c-1}$.
 %Bell triangle: 1, 1 2, 2 3 5, 5 7 10 15, 15 20 27 37 52, (last) ... (left + left above).
 
 % \subsection{Bernoulli numbers}
@@ -397,13 +408,13 @@ $\pi(1000) = 168$, $\pi(10^6) = 78498$, $\pi(10^9) = 50\ 847\ 534$.
 The only known Fermat primes are 3, 5, 17, 257, 65537.
 A number of form $2^n+1$ is prime only if it is a Fermat prime.
 
-\subsection{Mersenne primes}  A Mersenne prime is a prime of form $2^n-1$.
-Known Mersenne primes correspond to (necessarily prime) indexes
-2, 3, 5, 7, 13, 17, 19, 31, 61, 89, 107, 127, 521, 607, 1279,
-2203, 2281, 3217, 4253, 4423, 9689, 9941, 11213, 19937,
-21701, 23209, 44497, 86243, 110503, 132049, 216091,
-756839, 859433, 1257787, 1398269, 2976221, 3021377,
-6972593, 13466917.
+% \subsection{Mersenne primes}  A Mersenne prime is a prime of form $2^n-1$.
+% Known Mersenne primes correspond to (necessarily prime) indexes
+% 2, 3, 5, 7, 13, 17, 19, 31, 61, 89, 107, 127, 521, 607, 1279,
+% 2203, 2281, 3217, 4253, 4423, 9689, 9941, 11213, 19937,
+% 21701, 23209, 44497, 86243, 110503, 132049, 216091,
+% 756839, 859433, 1257787, 1398269, 2976221, 3021377,
+% 6972593, 13466917.
 
 \subsection{Perfect numbers}  $n>1$ is called perfect if it equals
 sum of its proper divisors and $1$.  Even $n$ is perfect iff $n = 2^{p-1} (2^p - 1)$
@@ -493,11 +504,11 @@ the RHS can take for $z = 0, 1, \dots, n-1$, and brute force $y$ on the LHS,
 each time checking whether there's a corresponding value for RHS.
 
 
-\subsection{Pythagorean triples}  Integer solutions of $x^2 + y^2 = z^2$
-All relatively prime triples are given by:
-$x=2mn, y=m^2-n^2, z=m^2+n^2$ where $m>n, \gcd(m,n)=1$ and $m \not\equiv n \pmod{2}$.
-All other triples are multiples of these.
-Equation $x^2 + y^2 = 2z^2$ is equivalent to $(\frac{x+y}{2})^2 + (\frac{x-y}{2})^2 = z^2$.
+% \subsection{Pythagorean triples}  Integer solutions of $x^2 + y^2 = z^2$
+% All relatively prime triples are given by:
+% $x=2mn, y=m^2-n^2, z=m^2+n^2$ where $m>n, \gcd(m,n)=1$ and $m \not\equiv n \pmod{2}$.
+% All other triples are multiples of these.
+% Equation $x^2 + y^2 = 2z^2$ is equivalent to $(\frac{x+y}{2})^2 + (\frac{x-y}{2})^2 = z^2$.
 
 \subsection{Postage stamps/McNuggets problem}  Let $a$, $b$ be relatively-prime integers.
 There are exactly $\frac{1}{2}(a-1)(b-1)$ numbers \emph{not} of form $ax+by$ ($x,y \ge 0$),
@@ -572,25 +583,25 @@ when $G-e$ is the multigraph obtained by deleting $e$, and $G/e$ is
 the contraction of $G$ by $e$ (multiple edges arising from the contraction
 are preserved.)
 
-\subsection{Euler tours}
-Euler tour in an undirected graph exists iff the graph is connected and each
-vertex has an even degree.  Euler tour in a directed graph exists iff in-degree
-of each vertex equals its out-degree, and underlying undirected graph is connected.
+% \subsection{Euler tours}
+% Euler tour in an undirected graph exists iff the graph is connected and each
+% vertex has an even degree.  Euler tour in a directed graph exists iff in-degree
+% of each vertex equals its out-degree, and underlying undirected graph is connected.
 %Open Euler path exists if it's possible to make the graph Eulerian by adding a single edge.
-Construction:
-\vspace{-5mm}
-\begin{verbatim}
-    doit(u):
-      for each edge e = (u, v) in E, do: erase e, doit(v)
-      prepend u to the list of vertices in the tour
-\end{verbatim}
-\vspace{-2mm}
+% Construction:
+% \vspace{-5mm}
+% \begin{verbatim}
+%     doit(u):
+%       for each edge e = (u, v) in E, do: erase e, doit(v)
+%       prepend u to the list of vertices in the tour
+% \end{verbatim}
+% \vspace{-2mm}
 
 
-\subsection{Stable marriages problem}
-While there is a free man $m$: let $w$ be the most-preferred woman to whom he
-has not yet proposed, and propose $m$ to $w$. If $w$ is free, or is engaged to someone whom
-she prefers less than $m$, match $m$ with $w$, else deny proposal.
+% \subsection{Stable marriages problem}
+% While there is a free man $m$: let $w$ be the most-preferred woman to whom he
+% has not yet proposed, and propose $m$ to $w$. If $w$ is free, or is engaged to someone whom
+% she prefers less than $m$, match $m$ with $w$, else deny proposal.
 
 
 
@@ -630,7 +641,7 @@ $d_1 + \dots + d_k \le k(k-1) + \sum_{i=k+1}^n \min(k, d_{i})$
 for all $k=1,2,\dots,n-1$.
 
 % }}}
-
+W
 % Games {{{
 
 \section{Games}
@@ -641,25 +652,25 @@ $G(x) = \mbox{mex}(\{ G(y) : (x, y) \in E \})$,
 where $\mbox{mex}(S) = \min \{ n \ge 0: n \not\in S \}$.
 $x$ is losing iff $G(x) = 0$.
 
-\subsection{Sums of games}
+% \subsection{Sums of games}
 
-% \vspace{-4mm}
-\begin{itemize}
-  \item
-    \emph{Player chooses a game and makes a move in it}
-    Grundy number of a position is xor of grundy numbers of positions in summed games.
-  \item
-    \emph{Player chooses a non-empty subset of games (possibly, all) and makes moves in all of them}
-    A position is losing iff each game is in a losing position.
-  \item
-    \emph{Player chooses a proper subset of games (not empty and not all),
-        and makes moves in all chosen ones.}
-    A position is losing iff grundy numbers of all games are equal.
-  \item
-    \emph{Player must move in all games, and loses if can't move in some game}
-    A position is losing if any of the games is in a losing position.
-\end{itemize}
-% http://www.topcoder.com/tc?module=Static&d1=tutorials&d2=algorithmGames
+% % \vspace{-4mm}
+% \begin{itemize}
+%   \item
+%     \emph{Player chooses a game and makes a move in it}
+%     Grundy number of a position is xor of grundy numbers of positions in summed games.
+%   \item
+%     \emph{Player chooses a non-empty subset of games (possibly, all) and makes moves in all of them}
+%     A position is losing iff each game is in a losing position.
+%   \item
+%     \emph{Player chooses a proper subset of games (not empty and not all),
+%         and makes moves in all chosen ones.}
+%     A position is losing iff grundy numbers of all games are equal.
+%   \item
+%     \emph{Player must move in all games, and loses if can't move in some game}
+%     A position is losing if any of the games is in a losing position.
+% \end{itemize}
+% % http://www.topcoder.com/tc?module=Static&d1=tutorials&d2=algorithmGames
 
 % \vspace{-3mm}
 
@@ -681,13 +692,13 @@ A position with $n$ piles of size $1$ is losing iff $n$ is \emph{odd}
 % $\ln \Gamma(z) = \frac{1}{2} \ln(2 \pi) + (z - \frac{1}{2}) \ln z - z + \sum_{n=1}^{\infty} \frac{B_{2n}}{2n(2n-1)} z^{-(2n-1)}$.
 % $\sum = \frac{1}{12 z} - \frac{1}{360 z^3} + \frac{1}{1260 z^5} - \dots$
 
-\subsection{Taylor series}
-$f(x) = f(a) + \frac{x-a}{1!} f'(a) + \frac{(x-a)^2}{2!} f^{(2)}(a) + \dots + \frac{(x-a)^n}{n!} f^{(n)}(a) + \dots$. \\
-$\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \dots$ \\
-$\ln x = 2(a+\frac{a^3}{3}+\frac{a^5}{5}+\dots)$, where $a=\frac{x-1}{x+1}$. $\ln x^2 = 2 \ln x$. \\
-$\arctan x = x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} + \dots$,
-$\arctan x = \arctan c + \arctan \frac{x-c}{1+xc}$ (e.g c=.2) \\
-$\pi = 4 \arctan 1$, $\pi = 6 \arcsin \frac{1}{2}$
+% \subsection{Taylor series}
+% $f(x) = f(a) + \frac{x-a}{1!} f'(a) + \frac{(x-a)^2}{2!} f^{(2)}(a) + \dots + \frac{(x-a)^n}{n!} f^{(n)}(a) + \dots$. \\
+% $\sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!} + \dots$ \\
+% $\ln x = 2(a+\frac{a^3}{3}+\frac{a^5}{5}+\dots)$, where $a=\frac{x-1}{x+1}$. $\ln x^2 = 2 \ln x$. \\
+% $\arctan x = x - \frac{x^3}{3} + \frac{x^5}{5} - \frac{x^7}{7} + \dots$,
+% $\arctan x = \arctan c + \arctan \frac{x-c}{1+xc}$ (e.g c=.2) \\
+% $\pi = 4 \arctan 1$, $\pi = 6 \arcsin \frac{1}{2}$
 
 % }}}
 
