@@ -1,2 +1,2 @@
 # ICPC-codebook
-ACM ICPC codebook for team RuntimeTerror from IIIT-Delhi
+ACM ICPC codebook for team CompilationTerror from IIIT-Delhi
